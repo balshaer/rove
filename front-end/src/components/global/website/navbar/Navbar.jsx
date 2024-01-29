@@ -1,30 +1,33 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import Button from "@/components/custom/buttons/Button";
-import ButtonOutline from "@/components/custom/buttons/ButtonOutline";
 import NavbarItems from "./NavbarItems";
+import NavbarButtons from "./NavbarButtons";
+import Logo from "@/components/ui/logo/Logo";
 
 export default function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <header className=" Navbar">
+    <header className="Navbar">
       <div className="mx-auto flex h-16 max-w-screen-xl items-center gap-8 px-4 sm:px-6 lg:px-8">
         <Link to="/" className="block text-teal-600">
           <span className="sr-only">Home</span>
-          Logo
+
+          <Logo />
         </Link>
         <div className="flex flex-1 items-center justify-end md:justify-between">
           <nav aria-label="Global" className="hidden md:block">
             <NavbarItems />
           </nav>
-          <div className="flex items-center gap-4">
-            <div className="sm:flex sm:gap-4">
-              <Link to="/Login">
-                <Button text="Login" />
-              </Link>
-              <Link to="/Register">
-                <ButtonOutline text="Register" />
-              </Link>
+          <div className="flex items-center gap-4 ">
+            <div className="hidden md:block">
+              <NavbarButtons />
             </div>
-            <button className="block rounded bg-gray-100 p-2.5 text-gray-600 transition hover:text-gray-600/75 md:hidden">
+
+            <button
+              className="block rounded bg-gray-100 p-2.5 text-gray-600 transition hover:text-gray-600/75 md:hidden"
+              onClick={() => setIsOpen(!isOpen)}
+            >
               <span className="sr-only">Toggle menu</span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -44,6 +47,12 @@ export default function Navbar() {
           </div>
         </div>
       </div>
+      {/* Responsive Navbar Items */}
+      {isOpen && (
+        <div className="md:hidden flex   ">
+          <NavbarItems />
+        </div>
+      )}
     </header>
   );
 }

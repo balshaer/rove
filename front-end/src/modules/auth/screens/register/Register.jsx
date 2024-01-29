@@ -1,5 +1,6 @@
-import RegisterForm from "@/components/global/auth/RegisterForm";
-import Navbar from "@/components/custom/Navbar/Navbar";
+import Navbar from "@/components/global/website/navbar/Navbar";
+import Footer from "@/components/global/website/Footer/Footer";
+import RegisterForm from "@/components/global/auth/form/RegisterForm";
 
 export default function Register() {
   return (
@@ -7,6 +8,8 @@ export default function Register() {
       <Navbar />
 
       <RegisterForm />
+
+      <Footer />
     </div>
   );
 }

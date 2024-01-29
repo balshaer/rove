@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Button as UIButton } from "@/components/ui/button";
 
 export default function ButtonOutline(props) {

@@ -14,3 +14,51 @@
 html {
   font-size: 16px;
 }
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #05c46b #cacaca;
+}
+
+*::-webkit-scrollbar {
+  height: 7px;
+  width: 7px;
+}
+*::-webkit-scrollbar-track {
+  border-radius: 5px;
+  background-color: #cacaca;
+}
+
+*::-webkit-scrollbar-track:hover {
+  background-color: #cacaca;
+}
+
+*::-webkit-scrollbar-track:active {
+  background-color: #cacaca;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: #05c46b;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #05b563;
+}
+
+*::-webkit-scrollbar-thumb:active {
+  background-color: #04a259;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #2b2e4a;
+}
+
+p {
+  color: #2b2e4a;
+}

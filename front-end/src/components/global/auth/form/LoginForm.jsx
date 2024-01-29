@@ -1,6 +1,6 @@
 export default function LoginForm() {
   return (
-    <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8 RegisterForm">
+    <div className="mx-auto max-w-screen-xl px-4  sm:px-6 lg:px-8 RegisterForm">
       <div className="mx-auto max-w-lg">
         <h1 className="text-center text-2xl font-bold text-indigo-600 sm:text-3xl">
           Get started today
@@ -9,10 +9,7 @@ export default function LoginForm() {
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati
           sunt dolores deleniti inventore quaerat mollitia?
         </p>
-        <form
-          action
-          className="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8"
-        >
+        <form className="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8">
           <p className="text-center text-lg font-medium">
             Sign in to your account
           </p>

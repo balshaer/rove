@@ -12,6 +12,7 @@
   "dependencies": {
     "@radix-ui/react-slot": "^1.0.2",
     "animate.css": "^4.1.1",
+    "axios": "^1.6.7",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "lucide-react": "^0.314.0",
@@ -19,7 +20,8 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.21.3",
     "tailwind-merge": "^2.2.1",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "universal-cookie": "^7.0.2"
   },
   "devDependencies": {
     "@types/node": "^20.11.6",
