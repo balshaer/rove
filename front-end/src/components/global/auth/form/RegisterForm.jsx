@@ -17,6 +17,8 @@ export default function RegisterForm() {
 
   const [loading, setLoadin] = useState(false);
 
+  const [emailError, setEmailError] = useState(false);
+
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -35,26 +37,30 @@ export default function RegisterForm() {
   async function handelSubmit(e) {
     e.preventDefault();
     setAccept(true);
-    // setLoadin(true);
 
     const token = cookie.get("Bearer");
 
     try {
-      const res = await axios.post(`http://127.0.0.1:8000/api/register`, form, {
+      const res = await axios.post(`${baseURL}${register}`, form, {
         headers: {
           Accept: "application/json",
           Authorization: "Bearer " + token,
         },
       });
 
-      if (res.status === 200) {
-        setLoadin(true);
+      setLoadin(true);
 
-        cookie.set("Bearer", token);
-        navigate("/dashboard");
-      }
+      cookie.set("Bearer", token);
+
+      console.log("success");
+
+      navigate("/dashboard");
     } catch (err) {
       console.log(err);
+
+      if (err.response.status === 422) {
+        setEmailError(true);
+      }
     }
   }
 
@@ -103,6 +109,10 @@ export default function RegisterForm() {
 
               {accept && form.email < 1 && (
                 <InputError text="please enter your email" />
+              )}
+
+              {accept && emailError && (
+                <InputError text="this email has already been taken" />
               )}
             </div>
           </div>

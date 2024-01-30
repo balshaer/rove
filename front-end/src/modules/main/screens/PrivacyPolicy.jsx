@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 export default function PrivacyPolicy() {
   return (
     <div>
-      <div className="bg-[#fafafa]">
+      <div className="bg-[#f0f5ed] text-[#2b2e4a]">
         <div className="container mx-auto px-4  relative py-20">
           <Link to={"/"} className="absolute top-2 left-0">
             <svg
@@ -20,12 +20,12 @@ export default function PrivacyPolicy() {
             </svg>
           </Link>
 
-          <h1 className="text-3xl font-bold mb-4">Privacy Policy</h1>
+          <h1 className="text-3xl  font-bold mb-4">Privacy Policy</h1>
           <p className="mb-4">
             This privacy policy sets out how our website uses and protects any
             information that you give us when you use this website.
           </p>
-          <h2 className="text-2xl font-bold mb-2">Information We Collect</h2>
+          <h2 className="text-2xl  font-bold mb-2">Information We Collect</h2>
           <p className="mb-4">We may collect the following information:</p>
           <ul className="list-disc list-inside mb-4">
             <li>Your name and contact information</li>
@@ -34,7 +34,7 @@ export default function PrivacyPolicy() {
               Other information relevant to customer surveys and/or offers
             </li>
           </ul>
-          <h2 className="text-2xl font-bold mb-2">
+          <h2 className="text-2xl  font-bold mb-2">
             How We Use the Information
           </h2>
           <p className="mb-4">
@@ -55,14 +55,14 @@ export default function PrivacyPolicy() {
               according to your interests.
             </li>
           </ul>
-          <h2 className="text-2xl font-bold mb-2">Security</h2>
+          <h2 className="text-2xl  font-bold mb-2">Security</h2>
           <p className="mb-4">
             We are committed to ensuring that your information is secure. In
             order to prevent unauthorized access or disclosure, we have put in
             place suitable physical, electronic, and managerial procedures to
             safeguard and secure the information we collect online.
           </p>
-          <h2 className="text-2xl font-bold mb-2">Cookies</h2>
+          <h2 className="text-2xl  font-bold mb-2">Cookies</h2>
           <p className="mb-4">
             A cookie is a small file that asks permission to be placed on your
             computer's hard drive. Once you agree, the file is added, and the
@@ -79,7 +79,7 @@ export default function PrivacyPolicy() {
             information about you, other than the data you choose to share with
             us.
           </p>
-          <h2 className="text-2xl font-bold mb-2">Links to Other Websites</h2>
+          <h2 className="text-2xl  font-bold mb-2">Links to Other Websites</h2>
           <p className="mb-4">
             Our website may contain links to other websites of interest.
             However, once you have used these links to leave our site, you
@@ -90,7 +90,7 @@ export default function PrivacyPolicy() {
             exercise caution and look at the privacy statement applicable to the
             website in question.
           </p>
-          <h2 className="text-2xl font-bold mb-2">
+          <h2 className="text-2xl  font-bold mb-2">
             Controlling Your Personal Information
           </h2>
           <p className="mb-4">

@@ -3,6 +3,10 @@ import { Link } from "react-router-dom";
 export default function Copyright() {
   const currentYear = new Date().getFullYear();
 
+  function openPrivacyLink() {
+    window.location.pathname = "/PrivacyPolicy";
+  }
+
   return (
     <div className="text-center sm:flex sm:justify-between sm:text-left">
       <p className="text-sm text-[#bfc0c7]">
@@ -16,7 +20,7 @@ export default function Copyright() {
         <span>·</span>
         <Link
           className="inline-block text-[#05c46b] underline transition hover:text-[#05c46b]/75"
-          to="/PrivacyPolicy"
+          onClick={openPrivacyLink}
         >
           Privacy Policy
         </Link>

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import "animate.css";
 
 import Loading from "./components/custom/loading/Loading";
-import Routes from "./Routes";
+import Routes from "./Routes/__routes";
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
