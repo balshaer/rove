@@ -5,6 +5,9 @@ import About from "@/modules/main/screens/About";
 import Register from "@/modules/auth/screens/register/Register";
 import Login from "@/modules/auth/screens/login/Login";
 import PrivacyPolicy from "@/modules/main/screens/PrivacyPolicy";
+import Dashboard from "@/modules/dashboard/screens/Dashboard";
+import AddUser from "@/modules/dashboard/screens/users/AddUser";
+import Users from "@/modules/dashboard/screens/users/Users";
 
 export default function Routes() {
   return (
@@ -14,6 +17,11 @@ export default function Routes() {
       <Route path="register" element={<Register />} />
       <Route path="login" element={<Login />} />
       <Route path="PrivacyPolicy" element={<PrivacyPolicy />} />
+
+      <Route path="dashboard" element={<Dashboard />}>
+        <Route path="ShowUsers" element={<Users />} />
+        <Route path="AddUser" element={<AddUser />} />
+      </Route>
     </AllRoutes>
   );
 }

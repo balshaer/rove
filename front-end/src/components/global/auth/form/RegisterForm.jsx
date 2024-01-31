@@ -164,7 +164,7 @@ export default function RegisterForm() {
           <p className="text-center text-sm text-gray-500">
             Already have an account?
             <Link
-              to="/login"
+              to="/Login"
               className="underline cursor-pointer font-bold ms-1"
             >
               Sign in
