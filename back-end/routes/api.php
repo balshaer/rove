@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UsersContoller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,7 +16,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+// Public Routes
 Route::controller(AuthController::class)->group(function () {
     Route::post('/register', 'register');
     Route::post('/login', 'login');
+});
+
+// Protected Routes
+Route::middleware('auth:api')->group(function () {
+    Route::get('/users', [UsersContoller::class, 'GetUsers']);
+    Route::get('/logout', [AuthController::class, 'logout']);
 });
