@@ -72,7 +72,7 @@ export default function RegisterForm() {
           className="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-md sm:p-6 lg:p-8"
         >
           <p className="text-center text-lg font-medium">
-            Sign in to your account
+            Register a new account
           </p>
 
           <div>
