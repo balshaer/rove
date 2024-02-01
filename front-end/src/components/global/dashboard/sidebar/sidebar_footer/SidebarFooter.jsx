@@ -1,7 +1,24 @@
 import Button from "@/components/custom/buttons/Button";
+import axios from "axios";
 import { Link } from "react-router-dom";
+import { baseURL, logout } from "@/core/api/API";
 
 export default function SidebarFooter() {
+  async function handelLogout() {
+    try {
+      await axios.post(`${baseURL}${logout}`, null, {
+        headers: {
+          Accept: "application/json",
+          Authorization: "Bearer ",
+        },
+      });
+
+      window.location.pathname = "/Home";
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   const logoutIcon = (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -20,7 +37,7 @@ export default function SidebarFooter() {
   );
   return (
     <div className="sticky inset-x-0 bottom-0 border-t border-gray-100 p-4">
-      <Link className="flex items-center gap-2 ">
+      <Link onClick={handelLogout} className="flex items-center gap-2 ">
         <Button text="Logout" icon={logoutIcon} />
       </Link>
     </div>
