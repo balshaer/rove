@@ -1,24 +1,19 @@
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Cookies from "universal-cookie";
+import axios from "axios";
 import { Input } from "@/components/ui/input";
 import Button from "@/components/custom/buttons/Button";
 import InputError from "@/components/custom/errors/input_error/InputError";
-import { useState } from "react";
 import ButtonLoading from "@/components/custom/buttons/ButtonLoading";
-
-import Cookies from "universal-cookie";
-
-import axios from "axios";
 import OrLine from "../or_line/OrLine";
 import ButtonGoogle from "@/components/custom/buttons/ButtonGoogle";
 import { baseURL, register } from "@/core/api/API";
 
 export default function RegisterForm() {
   const [accept, setAccept] = useState(false);
-
   const [loading, setLoadin] = useState(false);
-
   const [emailError, setEmailError] = useState(false);
-
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -31,16 +26,15 @@ export default function RegisterForm() {
   }
 
   const cookie = new Cookies();
-
   const navigate = useNavigate();
 
   async function handelSubmit(e) {
     e.preventDefault();
     setAccept(true);
 
-    const token = cookie.get("Bearer");
-
     try {
+      const token = cookie.get("Bearer");
+
       const res = await axios.post(`${baseURL}${register}`, form, {
         headers: {
           Accept: "application/json",
@@ -48,9 +42,11 @@ export default function RegisterForm() {
         },
       });
 
+      console.log(res.data);
+
       setLoadin(true);
 
-      cookie.set("Bearer", token);
+      cookie.set("Bearer", res.data.token);
 
       console.log("success");
 
@@ -58,7 +54,7 @@ export default function RegisterForm() {
     } catch (err) {
       console.log(err);
 
-      if (err.response.status === 422) {
+      if (err.response && err.response.status === 422) {
         setEmailError(true);
       }
     }

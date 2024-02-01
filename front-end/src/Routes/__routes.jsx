@@ -8,6 +8,7 @@ import PrivacyPolicy from "@/modules/main/screens/PrivacyPolicy";
 import Dashboard from "@/modules/dashboard/screens/Dashboard";
 import AddUser from "@/modules/dashboard/screens/users/AddUser";
 import Users from "@/modules/dashboard/screens/users/Users";
+import GoogleCallBack from "@/modules/auth/static/GoogleCallBack";
 
 export default function Routes() {
   return (
@@ -17,6 +18,7 @@ export default function Routes() {
       <Route path="register" element={<Register />} />
       <Route path="login" element={<Login />} />
       <Route path="PrivacyPolicy" element={<PrivacyPolicy />} />
+      <Route path="/auth/google/callback" element={<GoogleCallBack />} />
 
       <Route path="dashboard" element={<Dashboard />}>
         <Route path="ShowUsers" element={<Users />} />
