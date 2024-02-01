@@ -24,6 +24,6 @@ class AuthServiceProvider extends ServiceProvider
     {
 
         Passport::refreshTokensExpireIn(now()->addMonth(6));
-        Passport::personalAccessTokensExpireIn(now()->addSeconds(80));
+        Passport::personalAccessTokensExpireIn(now()->addSeconds(100));
     }
 }

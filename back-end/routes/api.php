@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\socialAuthController;
 use App\Http\Controllers\UsersContoller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -28,3 +29,6 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/users', [UsersContoller::class, 'GetUsers']);
     Route::get('/logout', [AuthController::class, 'logout']);
 });
+
+Route::get('/login-google', [socialAuthController::class, 'redirectToProvider']);
+Route::get('/auth/google/callback', [socialAuthController::class, 'handleCallback']);
