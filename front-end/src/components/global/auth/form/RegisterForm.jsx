@@ -159,8 +159,9 @@ export default function RegisterForm() {
 
           <OrLine />
 
-          <ButtonGoogle text="continue with google " />
-
+          <a href={`http://127.0.0.1:8000/login-google`}>
+            <ButtonGoogle text="continue with google " />
+          </a>
           <p className="text-center text-sm text-gray-500">
             Already have an account?
             <Link

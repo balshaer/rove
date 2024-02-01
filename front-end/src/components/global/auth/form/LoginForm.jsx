@@ -39,9 +39,6 @@ export default function LoginForm() {
 
     try {
       await axios.post(`${baseURL}${login}`, form, {
-
-
-
         headers: {
           Accept: "application/json",
           Authorization: "Bearer " + token,
@@ -122,8 +119,9 @@ export default function LoginForm() {
 
           <OrLine />
 
-          <ButtonGoogle text="continue with google " />
-
+          <a href={`http://127.0.0.1:8000/login-google`}>
+            <ButtonGoogle text="continue with google " />
+          </a>
           <p className="text-center text-sm text-gray-500">
             Dont have an account?
             <Link
