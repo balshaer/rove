@@ -13,7 +13,6 @@ import { baseURL, register } from "@/core/api/API";
 export default function RegisterForm() {
   const [accept, setAccept] = useState(false);
   const [loading, setLoadin] = useState(false);
-  const [emailError, setEmailError] = useState(false);
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -42,21 +41,14 @@ export default function RegisterForm() {
         },
       });
 
-      console.log(res.data);
-
       setLoadin(true);
 
       cookie.set("Bearer", res.data.token);
 
-      console.log("success");
-
       navigate("/dashboard");
     } catch (err) {
+      setLoadin(false);
       console.log(err);
-
-      if (err.response && err.response.status === 422) {
-        setEmailError(true);
-      }
     }
   }
 
@@ -105,10 +97,6 @@ export default function RegisterForm() {
 
               {accept && form.email < 1 && (
                 <InputError text="please enter your email" />
-              )}
-
-              {accept && emailError && (
-                <InputError text="this email has already been taken" />
               )}
             </div>
           </div>

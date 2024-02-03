@@ -1,3 +1,4 @@
+import Loader from "./Loader";
 import "./style.css";
 import logo from "@/assets/logo/logo.png";
 
@@ -15,9 +16,7 @@ export default function Loading() {
           />
         </div>
 
-        <div>
-          <div className="loader "></div>
-        </div>
+        <Loader />
       </div>
     </div>
   );
