@@ -2,18 +2,23 @@ import Button from "@/components/custom/buttons/Button";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { baseURL, logout } from "@/core/api/API";
+import Cookies from "universal-cookie";
 
 export default function SidebarFooter() {
-  async function handelLogout() {
+  const cookie = new Cookies();
+
+  async function handleLogout() {
+    const token = cookie.get("Bearer");
+
     try {
-      await axios.post(`${baseURL}${logout}`, null, {
+      await axios.get(`${baseURL}${logout}`, {
         headers: {
           Accept: "application/json",
-          Authorization: "Bearer ",
+          Authorization: "Bearer " + token,
         },
       });
 
-      window.location.pathname = "/Home";
+      window.location.pathname = "/";
     } catch (error) {
       console.log(error);
     }
@@ -35,9 +40,10 @@ export default function SidebarFooter() {
       />
     </svg>
   );
+
   return (
     <div className="sticky inset-x-0 bottom-0 border-t border-gray-100 p-4">
-      <Link onClick={handelLogout} className="flex items-center gap-2 ">
+      <Link onClick={handleLogout} className="flex items-center gap-2 ">
         <Button text="Logout" icon={logoutIcon} />
       </Link>
     </div>

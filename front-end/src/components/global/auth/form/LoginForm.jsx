@@ -1,39 +1,32 @@
 import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import Cookies from "universal-cookie";
+import axios from "axios";
+
 import { Input } from "@/components/ui/input";
 import Button from "@/components/custom/buttons/Button";
 import InputError from "@/components/custom/errors/input_error/InputError";
-import { useState } from "react";
-import ButtonLoading from "@/components/custom/buttons/ButtonLoading";
-
-import Cookies from "universal-cookie";
-
-import axios from "axios";
 import OrLine from "../or_line/OrLine";
 import ButtonGoogle from "@/components/custom/buttons/ButtonGoogle";
+import ButtonLoading from "@/components/custom/buttons/ButtonLoading";
 import { baseURL, login } from "@/core/api/API";
 
 export default function LoginForm() {
   const [accept, setAccept] = useState(false);
-
-  const [loading, setLoadin] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [emailError, setEmailError] = useState(false);
-
-  const [form, setForm] = useState({
-    email: "",
-    password: "",
-  });
-
-  function handelFormChange(e) {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  }
-
+  const [form, setForm] = useState({ email: "", password: "" });
   const cookie = new Cookies();
-
   const navigate = useNavigate();
 
-  async function handelSubmit(e) {
+  const handleFormChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setAccept(true);
+    setLoading(true);
 
     const token = cookie.get("Bearer");
 
@@ -41,15 +34,9 @@ export default function LoginForm() {
       await axios.post(`${baseURL}${login}`, form, {
         headers: {
           Accept: "application/json",
-          Authorization: "Bearer " + token,
+          Authorization: `Bearer ${token}`,
         },
       });
-
-      setLoadin(true);
-
-      cookie.set("Bearer", token);
-
-      console.log("success");
 
       navigate("/dashboard");
     } catch (err) {
@@ -59,13 +46,15 @@ export default function LoginForm() {
         setEmailError(true);
       }
     }
-  }
+
+    setLoading(false);
+  };
 
   return (
     <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8 RegisterForm animate__animated  animate__fadeIn">
       <div className="mx-auto max-w-lg">
         <form
-          onSubmit={handelSubmit}
+          onSubmit={handleSubmit}
           className="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-md sm:p-6 lg:p-8"
         >
           <p className="text-center text-lg font-medium">
@@ -80,20 +69,19 @@ export default function LoginForm() {
               <Input
                 value={form.email}
                 name="email"
-                onChange={handelFormChange}
+                onChange={handleFormChange}
                 type="email"
                 placeholder="Enter Email"
               />
-
-              {accept && form.email < 1 && (
-                <InputError text="please enter your email." />
+              {accept && form.email.length < 1 && (
+                <InputError text="Please enter your email." />
               )}
-
               {accept && emailError && (
                 <InputError text="This email is not registered." />
               )}
             </div>
           </div>
+
           <div>
             <label htmlFor="password" className="sr-only">
               Password
@@ -102,28 +90,27 @@ export default function LoginForm() {
               <Input
                 value={form.password}
                 name="password"
-                onChange={handelFormChange}
+                onChange={handleFormChange}
                 type="password"
                 placeholder="Enter Password"
               />
-
-              {accept && form.password < 8 && (
-                <InputError text="the password should be more then 8 values" />
+              {accept && form.password.length < 8 && (
+                <InputError text="The password should be more than 8 characters." />
               )}
             </div>
           </div>
 
-          {!loading && <Button type="submit" text="Login" />}
-
-          {loading && <ButtonLoading text="Login" />}
-
+          {loading ? (
+            <ButtonLoading text="Login" />
+          ) : (
+            <Button type="submit" text="Login" />
+          )}
           <OrLine />
-
           <a href={`http://127.0.0.1:8000/login-google`}>
-            <ButtonGoogle text="continue with google " />
+            <ButtonGoogle text="Continue with Google" />
           </a>
           <p className="text-center text-sm text-gray-500">
-            Dont have an account?
+            Don't have an account?
             <Link
               to="/Register"
               className="underline cursor-pointer font-bold ms-1"

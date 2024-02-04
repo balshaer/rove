@@ -50,18 +50,18 @@ export default function SidebarItems() {
     <ul className="mt-6 space-y-1">
       <SidebarItem
         title="Users"
-        showRoute="/Dashboard/ShowUsers"
-        addRoute="/Dashboard/AddUser"
+        showRoute="/dashboard/showUsers"
+        addRoute="/dashboard/addUser"
       />
       <SidebarItem
         title="Categories"
-        showRoute="/Dashboard/ShowCategories"
-        addRoute="/Dashboard/AddCategory"
+        showRoute="/dashboard/showCategories"
+        addRoute="/dashboard/addCategories"
       />
       <SidebarItem
         title="Products"
-        showRoute="/Dashboard/ShowProducts"
-        addRoute="/Dashboard/AddProduct"
+        showRoute="/dashboard/showProducts"
+        addRoute="/dashboard/addProducts"
       />
     </ul>
   );

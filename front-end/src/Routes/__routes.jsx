@@ -7,9 +7,13 @@ import Login from "@/modules/auth/screens/login/Login";
 import PrivacyPolicy from "@/modules/main/screens/PrivacyPolicy";
 import Dashboard from "@/modules/dashboard/screens/Dashboard";
 import AddUser from "@/modules/dashboard/screens/users/AddUser";
-import Users from "@/modules/dashboard/screens/users/Users";
+import ShowUsers from "@/modules/dashboard/screens/users/ShowUsers";
 import GoogleCallBack from "@/modules/auth/static/GoogleCallBack";
 import Requireauth from "@/modules/auth/static/Requireauth";
+import ShowCategories from "@/modules/dashboard/screens/categories/ShowCategories";
+import AddCategories from "@/modules/dashboard/screens/categories/AddCategories";
+import ShowProducts from "@/modules/dashboard/screens/products/ShowProducts";
+import AddProducts from "@/modules/dashboard/screens/products/AddProducts";
 
 export default function Routes() {
   return (
@@ -23,8 +27,15 @@ export default function Routes() {
 
       <Route element={<Requireauth />}>
         <Route path="dashboard" element={<Dashboard />}>
-          <Route path="ShowUsers" element={<Users />} />
+          {/* Users */}
+          <Route path="ShowUsers" element={<ShowUsers />} />
           <Route path="AddUser" element={<AddUser />} />
+          {/* Categories */}
+          <Route path="ShowCategories" element={<ShowCategories />} />
+          <Route path="AddCategories" element={<AddCategories />} />
+          {/* Products */}
+          <Route path="ShowProducts" element={<ShowProducts />} />
+          <Route path="AddProducts" element={<AddProducts />} />
         </Route>
       </Route>
     </AllRoutes>
