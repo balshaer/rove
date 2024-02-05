@@ -7,10 +7,10 @@ import { OpenMenuProvider } from "@/core/context/OpenMenu.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <OpenMenuProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </OpenMenuProvider>
+      <OpenMenuProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </OpenMenuProvider>
   </React.StrictMode>
 );

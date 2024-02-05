@@ -17,4 +17,29 @@ class UsersContoller extends Controller
     {
         return Auth::user();
     }
+
+    // Get Specific User
+    public function getUser($id)
+    {
+        return User::findOrFail($id);
+    }
+
+    // Edit User
+    public function editUser(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email'
+        ]);
+        $user = User::findOrFail($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->save();
+    }
+
+    // Delete User
+    public function destroy($id)
+    {
+        return  User::findOrFail($id)->delete();
+    }
 }

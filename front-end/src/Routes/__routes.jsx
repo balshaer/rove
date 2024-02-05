@@ -15,6 +15,7 @@ import AddCategories from "@/modules/dashboard/screens/categories/AddCategories"
 import ShowProducts from "@/modules/dashboard/screens/products/ShowProducts";
 import AddProducts from "@/modules/dashboard/screens/products/AddProducts";
 import NotFound from "@/modules/auth/screens/errors/NotFound";
+import EditUser from "@/modules/dashboard/screens/users/EditUser";
 
 export default function Routes() {
   return (
@@ -35,6 +36,8 @@ export default function Routes() {
           <Route path="addCategory" element={<AddCategories />} />
           <Route path="ShowProducts" element={<ShowProducts />} />
           <Route path="AddProduct" element={<AddProducts />} />
+
+          <Route path="users/:id" element={<EditUser />} />
         </Route>
       </Route>
     </AllRoutes>
