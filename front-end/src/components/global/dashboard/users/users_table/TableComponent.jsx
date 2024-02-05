@@ -2,7 +2,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Cookies from "universal-cookie";
-import { users, baseURL } from "@/core/api/API";
 import TableSkeleton from "@/components/custom/skeletons/TableSkeleton";
 import {
   Table,
@@ -12,6 +11,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { BASEURL, USERS } from "@/core/api/API";
 
 const LoadingTable = () => (
   <Table>
@@ -76,7 +76,7 @@ const TableComponent = () => {
         const cookie = new Cookies();
         const token = cookie.get("Bearer");
 
-        const response = await axios.get(`${baseURL}${users}`, {
+        const response = await axios.get(`${BASEURL}${USERS}`, {
           headers: {
             Accept: "application/json",
             Authorization: `Bearer ${token}`,

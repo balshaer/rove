@@ -9,7 +9,7 @@ export default function Banner() {
         <div className="mx-auto max-w-xl text-center">
           <h1 className="text-3xl font-extrabold sm:text-5xl text-[#2b2e4a]">
             Understand User Flow.
-            <strong className="font-extrabold text-[#05c46b] sm:block">
+            <strong className="font-extrabold text-[#05c46b] sm:block boujee-text">
               Increase Conversion.
             </strong>
           </h1>

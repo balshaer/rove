@@ -9,7 +9,7 @@ import InputError from "@/components/custom/errors/input_error/InputError";
 import OrLine from "../or_line/OrLine";
 import ButtonGoogle from "@/components/custom/buttons/ButtonGoogle";
 import ButtonLoading from "@/components/custom/buttons/ButtonLoading";
-import { baseURL, login } from "@/core/api/API";
+import { BASEURL, LOGIN } from "@/core/api/API";
 
 export default function LoginForm() {
   const [accept, setAccept] = useState(false);
@@ -31,14 +31,14 @@ export default function LoginForm() {
     const token = cookie.get("Bearer");
 
     try {
-      await axios.post(`${baseURL}${login}`, form, {
+      await axios.post(`${BASEURL}${LOGIN}`, form, {
         headers: {
           Accept: "application/json",
           Authorization: `Bearer ${token}`,
         },
       });
 
-      navigate("/dashboard");
+      window.location.pathname = "/dashboard/showUsers";
     } catch (err) {
       console.log(err);
 

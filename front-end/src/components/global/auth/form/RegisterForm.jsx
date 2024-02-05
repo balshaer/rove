@@ -8,7 +8,7 @@ import InputError from "@/components/custom/errors/input_error/InputError";
 import ButtonLoading from "@/components/custom/buttons/ButtonLoading";
 import OrLine from "../or_line/OrLine";
 import ButtonGoogle from "@/components/custom/buttons/ButtonGoogle";
-import { baseURL, register } from "@/core/api/API";
+import { BASEURL, REGISTER } from "@/core/api/API";
 
 export default function RegisterForm() {
   const [accept, setAccept] = useState(false);
@@ -25,7 +25,6 @@ export default function RegisterForm() {
   };
 
   const cookie = new Cookies();
-  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,18 +32,18 @@ export default function RegisterForm() {
     setLoading(true);
 
     try {
-      const token = cookie.get("Bearer");
+      const token = cookie.get("token");
 
-      await axios.post(`${baseURL}${register}`, form, {
+      const res = await axios.post(`${BASEURL}${REGISTER}`, form, {
         headers: {
           Accept: "application/json",
           Authorization: "Bearer " + token,
         },
       });
 
-      cookie.set("Bearer", token);
+      cookie.set("Bearer", res.data.token);
 
-      navigate("/dashboard");
+      window.location.pathname = "/dashboard/showUsers";
     } catch (err) {
       setLoading(false);
       console.log(err);

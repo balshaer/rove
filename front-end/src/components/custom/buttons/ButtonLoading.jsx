@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Button as UIButtonLoading } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 export default function ButtonLoading(props) {

@@ -1,38 +1,45 @@
 <?php
 
-namespace Database\Factories;
+namespace App\Http\Controllers;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
- */
-class UserFactory extends Factory
+class UsersContoller extends Controller
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition(): array
+    public function GetUsers()
     {
-        return [
-            'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
-            'email_verified_at' => now(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'remember_token' => Str::random(10),
-        ];
+        return User::all();
+    }
+    // Get Auth User
+    public function authUser()
+    {
+        return Auth::user();
     }
 
-    /**
-     * Indicate that the model's email address should be unverified.
-     */
-    public function unverified(): static
+    // Get Specific User
+    public function getUser($id)
     {
-        return $this->state(fn (array $attributes) => [
-            'email_verified_at' => null,
+        return User::findOrFail($id);
+    }
+
+    // Edit User
+    public function editUser(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email'
         ]);
+        $user = User::findOrFail($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->save();
+    }
+
+    // Delete User
+    public function destroy($id)
+    {
+        return  User::findOrFail($id)->delete();
     }
 }

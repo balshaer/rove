@@ -14,6 +14,7 @@ import ShowCategories from "@/modules/dashboard/screens/categories/ShowCategorie
 import AddCategories from "@/modules/dashboard/screens/categories/AddCategories";
 import ShowProducts from "@/modules/dashboard/screens/products/ShowProducts";
 import AddProducts from "@/modules/dashboard/screens/products/AddProducts";
+import NotFound from "@/modules/auth/screens/errors/NotFound";
 
 export default function Routes() {
   return (
@@ -24,18 +25,16 @@ export default function Routes() {
       <Route path="login" element={<Login />} />
       <Route path="PrivacyPolicy" element={<PrivacyPolicy />} />
       <Route path="/auth/google/callback" element={<GoogleCallBack />} />
+      <Route path="404" element={<NotFound />} />
 
       <Route element={<Requireauth />}>
         <Route path="dashboard" element={<Dashboard />}>
-          {/* Users */}
           <Route path="ShowUsers" element={<ShowUsers />} />
           <Route path="AddUser" element={<AddUser />} />
-          {/* Categories */}
           <Route path="ShowCategories" element={<ShowCategories />} />
-          <Route path="AddCategories" element={<AddCategories />} />
-          {/* Products */}
+          <Route path="addCategory" element={<AddCategories />} />
           <Route path="ShowProducts" element={<ShowProducts />} />
-          <Route path="AddProducts" element={<AddProducts />} />
+          <Route path="AddProduct" element={<AddProducts />} />
         </Route>
       </Route>
     </AllRoutes>

@@ -62,3 +62,36 @@ h6 {
 p {
   color: #2b2e4a;
 }
+
+.boujee-text {
+  --bg-size: 400%;
+  --color-one: #00d9f5;
+  --color-two: #05c46b;
+  font-family: sans-serif;
+  background: linear-gradient(
+      90deg,
+      var(--color-one),
+      var(--color-two),
+      var(--color-one)
+    )
+    0 0 / var(--bg-size) 100%;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .boujee-text {
+    -webkit-animation: move-bg 8s linear infinite;
+    animation: move-bg 8s linear infinite;
+  }
+}
+@-webkit-keyframes move-bg {
+  to {
+    background-position: var(--bg-size) 0;
+  }
+}
+@keyframes move-bg {
+  to {
+    background-position: var(--bg-size) 0;
+  }
+}
