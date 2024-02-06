@@ -63,6 +63,7 @@ const TableComponent = () => {
           <TableHead className="w-[100px]">ID</TableHead>
           <TableHead>Name</TableHead>
           <TableHead>Email</TableHead>
+          <TableHead>Role</TableHead>
           <TableHead className="text-right">Actions</TableHead>
         </TableRow>
       </TableHeader>
@@ -81,6 +82,7 @@ const TableComponent = () => {
           <TableHead className="w-[100px]">ID</TableHead>
           <TableHead>Name</TableHead>
           <TableHead>Email</TableHead>
+          <TableHead>Role</TableHead>
           <TableHead className="text-right">Actions</TableHead>
         </TableRow>
       </TableHeader>
@@ -115,6 +117,13 @@ const TableComponent = () => {
               <TableCell className="font-medium">{index + 1}</TableCell>
               <TableCell>{user.name}</TableCell>
               <TableCell>{user.email}</TableCell>
+              <TableCell>
+                {user.role === "1995"
+                  ? "Admin"
+                  : user.role === "2001"
+                  ? "User"
+                  : "Writer"}
+              </TableCell>
               <TableCell className="text-right flex gap-2 w-full  items-center justify-end">
                 <button
                   className="bg-gray-200 p-1.5 rounded-xl transition-all translate-x-3 hover:bg-gray-300 hover:opacity-95"
@@ -134,7 +143,7 @@ const TableComponent = () => {
                   </svg>
                 </button>
 
-                <Link to={`${user.id}`}>
+                <Link to={`/dashboard/users/${user.id}`}>
                   <button className="bg-gray-200 p-1.5 rounded-xl transition-all translate-x-3 hover:bg-gray-300 hover:opacity-95">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

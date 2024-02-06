@@ -21,7 +21,7 @@ function SidebarItem({ title, route, isActive, onClick }) {
 
 function SidebarItems() {
   const [activeItem, setActiveItem] = useState(
-    localStorage.getItem("activeItem") || "/dashboard"
+    localStorage.getItem("activeItem") || "/dashboard/showUsers"
   );
 
   useEffect(() => {

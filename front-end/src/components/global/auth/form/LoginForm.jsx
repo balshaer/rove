@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import Cookies from "universal-cookie";
 import axios from "axios";
@@ -17,7 +17,6 @@ export default function LoginForm() {
   const [emailError, setEmailError] = useState(false);
   const [form, setForm] = useState({ email: "", password: "" });
   const cookie = new Cookies();
-  const navigate = useNavigate();
 
   const handleFormChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });

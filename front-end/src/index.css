@@ -65,7 +65,7 @@ p {
 
 .boujee-text {
   --bg-size: 400%;
-  --color-one: #00d9f5;
+  --color-one: #05c4a7;
   --color-two: #05c46b;
   font-family: sans-serif;
   background: linear-gradient(
@@ -95,3 +95,5 @@ p {
     background-position: var(--bg-size) 0;
   }
 }
+
+

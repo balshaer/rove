@@ -1,53 +1,47 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
-import axios from "axios";
 import { Input } from "@/components/ui/input";
 import Button from "@/components/custom/buttons/Button";
-import InputError from "@/components/custom/errors/input_error/InputError";
-import ButtonLoading from "@/components/custom/buttons/ButtonLoading";
-import { BASEURL, REGISTER } from "@/core/api/API";
+import { REGISTER } from "@/core/api/API";
+import ButtonDisabled from "@/components/custom/buttons/ButtonDisabled";
+import Select from "react-select";
+import { Axios } from "@/core/api/Axios";
+import { USER } from "../../../../core/api/API";
 
 const AddUser = () => {
-  const [accept, setAccept] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    password: "",
-    password_confirmation: "",
-  });
-
-  const handleFormChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
   const cookie = new Cookies();
   const navigate = useNavigate();
 
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [role, setRole] = useState(null);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setAccept(true);
-    setLoading(true);
 
     try {
       const token = cookie.get("Bearer");
 
-      await axios.post(`${BASEURL}${REGISTER}`, form, {
-        headers: {
-          Accept: "application/json",
-          Authorization: "Bearer " + token,
-        },
+      await Axios.post(`${USER}/add`, {
+        name: name,
+        email: email,
+        password: password,
+        role: role.value,
       });
 
       cookie.set("Bearer", token);
 
       navigate("/dashboard/showUsers");
     } catch (err) {
-      setLoading(false);
       console.error(err);
     }
   };
+
+  const isFormInvalid =
+    name === "" || email === "" || password === "" || role === "";
+
   return (
     <div className="mx-auto w-full RegisterForm animate__animated animate__fadeIn">
       <div className="mx-auto  w-full">
@@ -56,74 +50,67 @@ const AddUser = () => {
           className="mb-0 mt-6 space-y-4 rounded-lg p-4 w-full sm:p-6 lg:p-8"
         >
           <p className="text-center text-lg font-medium">Add a new user</p>
-
           <div className="w-full">
             <InputField
               label="Full Name"
               name="name"
-              value={form.name}
-              onChange={handleFormChange}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               placeholder="Enter Full Name"
-              accept={accept}
               minLength={1}
               errorMessage="Please enter a name"
             />
           </div>
-
           <div className="w-full">
             <InputField
               label="Email"
               name="email"
-              value={form.email}
-              onChange={handleFormChange}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               type="email"
               placeholder="Enter Email"
-              accept={accept}
               minLength={1}
               errorMessage="Please enter an email"
             />
           </div>
-
           <div className="w-full">
             <InputField
               label="Password"
               name="password"
-              value={form.password}
-              onChange={handleFormChange}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               type="password"
               placeholder="Enter Password"
-              accept={accept}
               minLength={8}
               errorMessage="The password should be more than 8 characters"
             />
           </div>
 
           <div className="w-full">
-            <InputField
-              label="Repeat Password"
-              name="password_confirmation"
-              value={form.password_confirmation}
-              onChange={handleFormChange}
-              type="password"
-              placeholder="Repeat Password"
-              accept={accept}
-              customValidation={() =>
-                form.password === form.password_confirmation
-              }
-              errorMessage="The passwords do not match"
+            <Select
+              onChange={(selectedOption) => setRole(selectedOption)}
+              name="role"
+              id="role"
+              value={options.label}
+              options={options}
             />
           </div>
 
-          {!loading ? (
-            <Button type="submit" text="Add user" />
+          {isFormInvalid ? (
+            <ButtonDisabled type="submit" text="Add user" />
           ) : (
-            <ButtonLoading text="Add user" />
+            <Button text="Add user" />
           )}
         </form>
       </div>
     </div>
   );
 };
+const options = [
+  { value: "2001", label: "User" },
+  { value: "1996", label: "Writer" },
+  { value: "1995", label: "Admin" },
+];
 
 const InputField = ({
   label,
@@ -132,10 +119,6 @@ const InputField = ({
   onChange,
   type = "text",
   placeholder,
-  accept,
-  minLength,
-  errorMessage,
-  customValidation,
 }) => (
   <>
     <label htmlFor={name} className="sr-only">
@@ -149,12 +132,6 @@ const InputField = ({
         type={type}
         placeholder={placeholder}
       />
-
-      {accept && value.length < minLength && <InputError text={errorMessage} />}
-
-      {accept && customValidation && !customValidation() && (
-        <InputError text={errorMessage} />
-      )}
     </div>
   </>
 );

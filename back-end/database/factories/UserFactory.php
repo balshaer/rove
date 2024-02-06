@@ -1,45 +1,46 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Database\Factories;
 
-use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
-class UsersContoller extends Controller
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
+ */
+class UserFactory extends Factory
 {
-    public function GetUsers()
+    /**
+     * Define the model's default state.
+     *
+     * @return array<string, mixed>
+     */
+    public function definition()
     {
-        return User::all();
-    }
-    // Get Auth User
-    public function authUser()
-    {
-        return Auth::user();
+        return [
+            'name' => "admin",
+            'email' => 'admin@gmail.com',
+            'email_verified_at' => now(),
+            'role' => '1995',
+            'password' => Hash::make('admin123$%'), // password
+            'remember_token' => Str::random(10),
+        ];
     }
 
-    // Get Specific User
-    public function getUser($id)
+    public function withToken()
     {
-        return User::findOrFail($id);
+        return $this->afterCreating(function ($user) {
+            $user->createToken('token')->accessToken;
+        });
     }
-
-    // Edit User
-    public function editUser(Request $request, $id)
+    /**
+     * Indicate that the model's email address should be unverified.
+     */
+    public function unverified(): static
     {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email'
+        return $this->state(fn (array $attributes) => [
+            'email_verified_at' => null,
         ]);
-        $user = User::findOrFail($id);
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->save();
-    }
-
-    // Delete User
-    public function destroy($id)
-    {
-        return  User::findOrFail($id)->delete();
     }
 }
