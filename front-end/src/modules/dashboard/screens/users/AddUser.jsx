@@ -1,13 +1,13 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
 import { Input } from "@/components/ui/input";
 import Button from "@/components/custom/buttons/Button";
-import { REGISTER } from "@/core/api/API";
 import ButtonDisabled from "@/components/custom/buttons/ButtonDisabled";
 import Select from "react-select";
 import { Axios } from "@/core/api/Axios";
-import { USER } from "../../../../core/api/API";
+import { USER } from "@/core/api/API";
 
 const AddUser = () => {
   const cookie = new Cookies();

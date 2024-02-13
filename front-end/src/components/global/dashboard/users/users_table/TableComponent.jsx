@@ -57,7 +57,7 @@ const TableComponent = () => {
   }, [reloadUseEffects]);
 
   return loading ? (
-    <Table>
+    <Table className="relative h-[100vh] overflow-hidden">
       <TableHeader>
         <TableRow>
           <TableHead className="w-[100px]">ID</TableHead>
@@ -67,13 +67,10 @@ const TableComponent = () => {
           <TableHead className="text-right">Actions</TableHead>
         </TableRow>
       </TableHeader>
-      <TableBody>
-        <TableRow>
-          <TableCell colSpan={4} style={{ textAlign: "center" }}>
-            <TableSkeleton />
-          </TableCell>
-        </TableRow>
-      </TableBody>
+
+      <div className="w-full h-[100vh] absolute inset-0 m-auto flex justify-center items-start top-0 pt-40">
+        <TableSkeleton />
+      </div>
     </Table>
   ) : (
     <Table>

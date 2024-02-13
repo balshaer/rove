@@ -3,7 +3,14 @@ import { Link } from "react-router-dom";
 import NavbarItems from "./NavbarItems";
 import NavbarButtons from "./NavbarButtons";
 import Logo from "@/components/ui/logo/Logo";
-
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -24,35 +31,42 @@ export default function Navbar() {
               <NavbarButtons />
             </div>
 
-            <button
-              className="block rounded bg-gray-100 p-2.5 text-gray-600 transition hover:text-gray-600/75 md:hidden"
-              onClick={() => setIsOpen(!isOpen)}
-            >
-              <span className="sr-only">Toggle menu</span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
-            </button>
+            <Sheet>
+              <SheetTrigger>
+                <button
+                  className="block rounded bg-gray-100 p-2.5 text-gray-600 transition hover:text-gray-600/75 md:hidden"
+                  onClick={() => setIsOpen(!isOpen)}
+                >
+                  <span className="sr-only">Toggle menu</span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M4 6h16M4 12h16M4 18h16"
+                    />
+                  </svg>
+                </button>
+              </SheetTrigger>
+              <SheetContent className="h-full flex justify-center items-center ">
+                <SheetHeader className="w-full">
+                  <SheetDescription>
+                    <NavbarItems />
+                  </SheetDescription>
+                </SheetHeader>
+              </SheetContent>
+            </Sheet>
           </div>
         </div>
       </div>
       {/* Responsive Navbar Items */}
-      {isOpen && (
-        <div className="md:hidden flex   ">
-          <NavbarItems />
-        </div>
-      )}
+      {isOpen && <div className="md:hidden flex   "></div>}
     </header>
   );
 }
