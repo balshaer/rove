@@ -9,7 +9,7 @@ export default function About() {
 
       <Navbar />
 
-      <section className="animate__animated animate__fadeIn">
+      <section>
         <h1>content</h1>
       </section>
 

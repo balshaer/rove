@@ -43,7 +43,7 @@ const AddUser = () => {
     name === "" || email === "" || password === "" || role === "";
 
   return (
-    <div className="mx-auto w-full RegisterForm animate__animated animate__fadeIn">
+    <div className="mx-auto w-full RegisterForm ">
       <div className="mx-auto  w-full">
         <form
           onSubmit={handleSubmit}

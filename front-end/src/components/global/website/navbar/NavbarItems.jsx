@@ -3,11 +3,11 @@ import NavbarButtons from "./NavbarButtons";
 
 export default function NavbarItems() {
   return (
-    <ul className=" h-full w-full flex items-center justify-center flex-col gap-4">
+    <ul className=" h-full w-full flex items-center justify-center max-md:flex-col gap-4 ">
       <li className="relative">
         <Link
           to="/"
-          className="text-[#2b2e4a]   font-bold  before:w-0 before:absolute before:bottom-[-2px] before:left-0 before:bg-[#2b2e4a] before:h-[0.5px]  hover:before:w-full transition-all  "
+          className="text-[#2b2e4a] hoverd   font-bold  before:w-0 before:absolute before:bottom-[-2px] before:left-0 before:bg-[#2b2e4a] before:h-[0.5px]  hover:before:w-full transition-all  "
         >
           Home
         </Link>
@@ -16,7 +16,7 @@ export default function NavbarItems() {
       <li className="relative">
         <Link
           to="/About"
-          className="text-[#2b2e4a]   font-bold  before:w-0 before:absolute before:bottom-[-2px] before:left-0 before:bg-[#2b2e4a] before:h-[0.5px]  hover:before:w-full transition-all  "
+          className="text-[#2b2e4a]  hoverd  font-bold  before:w-0 before:absolute before:bottom-[-2px] before:left-0 before:bg-[#2b2e4a] before:h-[0.5px]  hover:before:w-full transition-all  "
         >
           About
         </Link>

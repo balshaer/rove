@@ -9,8 +9,11 @@ export default function Home() {
       <Announcement />
       <Navbar />
 
-      <div className="animate__animated animate__fadeIn">
+      <div>
         <Banner />
+
+
+        
       </div>
 
       <Footer />

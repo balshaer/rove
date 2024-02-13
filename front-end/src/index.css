@@ -8,7 +8,9 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Cairo", sans-serif;
+  /* font-family: "Cairo", sans-serif; */
+
+  font-family: "Chillax", sans-serif;
 }
 
 html {
@@ -95,5 +97,3 @@ p {
     background-position: var(--bg-size) 0;
   }
 }
-
-

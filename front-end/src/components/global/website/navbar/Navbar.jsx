@@ -20,7 +20,7 @@ export default function Navbar() {
         <Link to="/" className="block text-teal-600">
           <span className="sr-only">Home</span>
 
-          <Logo />
+          {/* <Logo /> */}
         </Link>
         <div className="flex flex-1 items-center justify-end md:justify-between">
           <nav aria-label="Global" className="hidden md:block">

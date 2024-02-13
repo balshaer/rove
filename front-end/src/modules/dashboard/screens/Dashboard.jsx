@@ -10,7 +10,7 @@ export default function Dashboard() {
   return (
     <div className="flex flex-row h-screen bg-[#fafafa] max-md:w-fit max-md:h-full ">
       {openMenu && (
-        <div className=" lg:w-64 max-md:w-full animate__animated animate__fadeInLeft">
+        <div className=" lg:w-64 max-md:w-full">
           <Sidebar />
         </div>
       )}
