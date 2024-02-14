@@ -33,9 +33,9 @@ Route::get('/auth/google/callback', [socialAuthController::class, 'handleCallbac
 // Protected Routes
 Route::middleware('auth:api')->group(function () {
     // Users
-    Route::controller(UsersContoller::class)->group(function () {
+    Route::get('/user', [UsersContoller::class, 'authUser']);
+    Route::middleware('checkEditor')->controller(UsersContoller::class)->group(function () {
         Route::get('/users', 'GetUsers');
-        Route::get('/user', 'authUser');
         Route::get('/user/{id}', 'getUser');
         Route::post('/user/edit/{id}', 'editUser');
         Route::post('/user/add', 'addUser');

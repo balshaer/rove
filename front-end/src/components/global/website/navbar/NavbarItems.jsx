@@ -6,7 +6,7 @@ const NavbarItems = () => {
   return (
     <ul className="h-full w-full flex items-center justify-center max-md:flex-col gap-4 font-medium">
       <NavItem to="/" label="Home" />
-      <NavItem to="/about" label="About" />
+      <NavItem to="/products" label="Products" />
       <div className="hidden max-md:block max-md:w-full max-md:max-w-60">
         <NavbarButtons />
       </div>

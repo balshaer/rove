@@ -1,9 +1,9 @@
-import TableComponent from "@/components/global/dashboard/users/users_table/TableComponent";
+import UsersTable from "@/components/global/dashboard/users/users_table/UsersTable";
 
 export default function Users() {
   return (
     <div>
-      <TableComponent />
+      <UsersTable />
     </div>
   );
 }

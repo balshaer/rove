@@ -15,7 +15,7 @@ import { BASEURL, USER, USERS } from "@/core/api/API";
 import { Axios } from "@/core/api/Axios";
 import { Link } from "react-router-dom";
 
-const TableComponent = () => {
+const ProductTable = () => {
   const [userData, setUserData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [reloadUseEffects, setReloadEffects] = useState(false);
@@ -169,4 +169,4 @@ const TableComponent = () => {
   );
 };
 
-export default TableComponent;
+export default ProductTable;

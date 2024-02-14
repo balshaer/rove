@@ -16,13 +16,16 @@ import ShowProducts from "@/modules/dashboard/screens/products/ShowProducts";
 import AddProducts from "@/modules/dashboard/screens/products/AddProducts";
 import NotFound from "@/modules/auth/screens/errors/NotFound";
 import EditUser from "@/modules/dashboard/screens/users/EditUser";
-import Main from "../modules/dashboard/screens/dashboard/Main";
+import Main from "@/modules/dashboard/screens/dashboard/Main";
+import Products from "@/modules/main/screens/Products";
 
 export default function Routes() {
   return (
     <AllRoutes>
       <Route path="/" element={<Home />} />
       <Route path="about" element={<About />} />
+      <Route path="products" element={<Products />} />
+
       <Route path="register" element={<Register />} />
       <Route path="login" element={<Login />} />
       <Route path="PrivacyPolicy" element={<PrivacyPolicy />} />
