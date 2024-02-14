@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import ButtonOutline from "@/components/custom/buttons/ButtonOutline";
 import Button from "@/components/custom/buttons/Button";
-import AnimatedComponent from "../../../../custom/animation/AnimatedComponent";
+import AnimatedComponent from "@/components/custom/animation/AnimatedComponent";
 
 export default function Banner() {
   return (
