@@ -1,18 +1,14 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Cookies from "universal-cookie";
-import axios from "axios";
 import { Input } from "@/components/ui/input";
 import Button from "@/components/custom/buttons/Button";
 import ButtonDisabled from "@/components/custom/buttons/ButtonDisabled";
 import { USER } from "@/core/api/API";
 import { Axios } from "@/core/api/Axios";
 import Select from "react-select";
+import AnimatedComponent from "@/components/custom/animation/AnimatedComponent";
 
 const EditUser = () => {
-  const cookie = new Cookies();
-  const token = cookie.get("Bearer");
-
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [role, setRole] = useState(null);
@@ -57,7 +53,7 @@ const EditUser = () => {
   ];
 
   return (
-    <div className="mx-auto w-full RegisterForm ">
+    <AnimatedComponent className="mx-auto w-full RegisterForm ">
       <div className="mx-auto  w-full">
         <form
           onSubmit={handleSubmit}
@@ -102,7 +98,7 @@ const EditUser = () => {
           )}
         </form>
       </div>
-    </div>
+    </AnimatedComponent>
   );
 };
 

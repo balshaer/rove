@@ -1,4 +1,6 @@
 /* eslint-disable react/prop-types */
+import AnimatedComponent from "@/components/custom/animation/AnimatedComponent";
+
 import { HiDuplicate, HiCube, HiUsers } from "react-icons/hi";
 import Cookies from "universal-cookie";
 
@@ -19,7 +21,7 @@ const Main = () => {
   const totalUsers = cookie.get("TotalUsers");
 
   return (
-    <div>
+    <AnimatedComponent>
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8">
         <DashboardCard
           title="Products"
@@ -37,7 +39,7 @@ const Main = () => {
           value={0}
         />
       </div>
-    </div>
+    </AnimatedComponent>
   );
 };
 

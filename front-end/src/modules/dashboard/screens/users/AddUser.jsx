@@ -8,6 +8,8 @@ import ButtonDisabled from "@/components/custom/buttons/ButtonDisabled";
 import Select from "react-select";
 import { Axios } from "@/core/api/Axios";
 import { USER } from "@/core/api/API";
+import AnimatedComponent from "@/components/custom/animation/AnimatedComponent";
+
 
 const AddUser = () => {
   const cookie = new Cookies();
@@ -43,7 +45,7 @@ const AddUser = () => {
     name === "" || email === "" || password === "" || role === "";
 
   return (
-    <div className="mx-auto w-full RegisterForm ">
+    <AnimatedComponent className="mx-auto w-full RegisterForm ">
       <div className="mx-auto  w-full">
         <form
           onSubmit={handleSubmit}
@@ -103,7 +105,7 @@ const AddUser = () => {
           )}
         </form>
       </div>
-    </div>
+    </AnimatedComponent>
   );
 };
 const options = [

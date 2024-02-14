@@ -1,6 +1,8 @@
+import AnimatedComponent from "@/components/custom/animation/AnimatedComponent";
+
 
 export default function AddProducts() {
   return (
-    <div>AddProducts</div>
+    <AnimatedComponent>AddProducts</AnimatedComponent>
   )
 }

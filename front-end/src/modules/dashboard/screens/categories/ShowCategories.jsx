@@ -1,6 +1,8 @@
+import AnimatedComponent from "@/components/custom/animation/AnimatedComponent";
+
 
 export default function ShowCategories() {
   return (
-    <div>ShowCategories</div>
+    <AnimatedComponent>ShowCategories</AnimatedComponent>
   )
 }
