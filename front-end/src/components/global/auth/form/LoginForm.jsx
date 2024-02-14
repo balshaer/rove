@@ -30,12 +30,13 @@ export default function LoginForm() {
     const token = cookie.get("Bearer");
 
     try {
-      await axios.post(`${BASEURL}${LOGIN}`, form, {
+      let res = await axios.post(`${BASEURL}${LOGIN}`, form, {
         headers: {
           Accept: "application/json",
           Authorization: `Bearer ${token}`,
         },
       });
+      cookie.set("Bearer", res.data.token);
 
       window.location.pathname = "/dashboard/showUsers";
     } catch (err) {

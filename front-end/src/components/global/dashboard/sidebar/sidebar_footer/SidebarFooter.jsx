@@ -1,13 +1,13 @@
 import Button from "@/components/custom/buttons/Button";
 import axios from "axios";
-import Cookies from "universal-cookie";
 import { BASEURL, LOGOUT } from "@/core/api/API";
+import Cookies from "js-cookie";
 
 export default function SidebarFooter() {
   async function handleLogout() {
-    const cookie = new Cookies();
+    const token = Cookies.get("Bearer");
 
-    const token = cookie.get("Bearer");
+    console.log("Here ___________________________________" + token);
 
     try {
       await axios.get(`${BASEURL}${LOGOUT}`, {
@@ -17,9 +17,8 @@ export default function SidebarFooter() {
         },
       });
 
-      cookie.remove("Bearer");
-
       window.location.pathname = "/login";
+      Cookies.remove("Bearer");
     } catch (error) {
       console.log(error);
     }

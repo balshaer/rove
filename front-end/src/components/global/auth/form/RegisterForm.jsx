@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Cookies from "universal-cookie";
 import axios from "axios";
 import { Input } from "@/components/ui/input";

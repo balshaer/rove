@@ -9,23 +9,28 @@ import Select from "react-select";
 import AnimatedComponent from "@/components/custom/animation/AnimatedComponent";
 
 const EditUser = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [role, setRole] = useState(null);
-
+  const [user, setUser] = useState({ name: "", email: "", role: null });
   const navigate = useNavigate();
   const id = Number(window.location.pathname.replace("/dashboard/users/", ""));
+  const isFormInvalid =
+    user.name === "" || user.email === "" || user.role === null;
 
-  const isFormInvalid = name === "" || email === "" || role === null;
+  const handleChange = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
+  };
+
+  const handleRoleChange = (selectedOption) => {
+    setUser({ ...user, role: selectedOption });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       await Axios.post(`${USER}/edit/${id}`, {
-        name: name,
-        email: email,
-        role: role.value,
+        name: user.name,
+        email: user.email,
+        role: user.role.value,
       });
       navigate("/dashboard/showUsers");
     } catch (err) {
@@ -37,9 +42,7 @@ const EditUser = () => {
     Axios.post(`${USER}/${id}`)
       .then((response) => {
         const { name, email, role } = response.data;
-        setName(name);
-        setEmail(email);
-        setRole({ value: role, label: role });
+        setUser({ name, email, role: { value: role, label: role } });
       })
       .catch((error) => {
         console.error("Error fetching user data:", error);
@@ -53,8 +56,8 @@ const EditUser = () => {
   ];
 
   return (
-    <AnimatedComponent className="mx-auto w-full RegisterForm ">
-      <div className="mx-auto  w-full">
+    <AnimatedComponent className="mx-auto w-full RegisterForm">
+      <div className="mx-auto w-full">
         <form
           onSubmit={handleSubmit}
           className="mb-0 mt-6 space-y-4 rounded-lg p-4 w-full sm:p-6 lg:p-8"
@@ -64,8 +67,8 @@ const EditUser = () => {
             <Input
               label="Full Name"
               name="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              value={user.name}
+              onChange={handleChange}
               placeholder="Enter Full Name"
               minLength={1}
             />
@@ -74,8 +77,8 @@ const EditUser = () => {
             <Input
               label="Email"
               name="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={user.email}
+              onChange={handleChange}
               type="email"
               placeholder="Enter Email"
               minLength={1}
@@ -83,10 +86,10 @@ const EditUser = () => {
           </div>
           <div className="w-full">
             <Select
-              onChange={(selectedOption) => setRole(selectedOption)}
+              onChange={handleRoleChange}
               name="role"
               id="role"
-              value={options.label}
+              value={user.role}
               options={options}
             />
           </div>
