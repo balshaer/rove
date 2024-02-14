@@ -16,6 +16,7 @@ import ShowProducts from "@/modules/dashboard/screens/products/ShowProducts";
 import AddProducts from "@/modules/dashboard/screens/products/AddProducts";
 import NotFound from "@/modules/auth/screens/errors/NotFound";
 import EditUser from "@/modules/dashboard/screens/users/EditUser";
+import Main from "../modules/dashboard/screens/dashboard/Main";
 
 export default function Routes() {
   return (
@@ -30,6 +31,7 @@ export default function Routes() {
 
       <Route element={<Requireauth />}>
         <Route path="dashboard" element={<Dashboard />}>
+          <Route path="main" element={<Main />} />
           <Route path="ShowUsers" element={<ShowUsers />} />
           <Route path="AddUser" element={<AddUser />} />
           <Route path="ShowCategories" element={<ShowCategories />} />

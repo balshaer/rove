@@ -20,6 +20,13 @@ const TableComponent = () => {
   const [loading, setLoading] = useState(true);
   const [reloadUseEffects, setReloadEffects] = useState(false);
   const { toast } = useToast();
+  const TotalUsers = userData.length;
+  localStorage.setItem("TotalUsers", TotalUsers);
+
+  const cookie = new Cookies();
+
+  cookie.set("TotalUsers", TotalUsers);
+
   async function handleDeleteUser(id) {
     try {
       const res = await Axios.delete(`${BASEURL}${USER}/${id}`);

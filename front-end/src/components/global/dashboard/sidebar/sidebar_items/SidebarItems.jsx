@@ -36,7 +36,7 @@ function SidebarItems() {
         </span>
       ),
     },
-    { title: "Dashboard", route: "/dashboard" },
+    { title: "Dashboard", route: "/dashboard/main" },
     { title: "New Product", route: "/dashboard/addProduct" },
     { title: "New Category", route: "/dashboard/addCategory" },
     {
