@@ -12,14 +12,14 @@ export default function Copyright() {
       <p className="text-sm text-[#bfc0c7]">
         <span className="block sm:inline">All rights reserved.</span>
         <a
-          className="inline-block text-[#05c46b] underline transition hover:text-[#05c46b]/75"
+          className="inline-block text-[#040320] underline transition hover:text-[#040320]/75"
           href="/"
         >
           Terms &amp; Conditions
         </a>
         <span>·</span>
         <Link
-          className="inline-block text-[#05c46b] underline transition hover:text-[#05c46b]/75"
+          className="inline-block text-[#040320] underline transition hover:text-[#040320]/75"
           onClick={openPrivacyLink}
         >
           Privacy Policy

@@ -6,7 +6,7 @@ export default function ButtonDisabled(props) {
   return (
     <UIButton
       disabled
-      className="bg-[#05c46b] text-[#fafafa] w-full rounded-[8px] hover:bg-[#05c46bc2]"
+      className="bg-[#040320] text-[#fafafa] w-full rounded-[8px] hover:bg-[#040320c2]"
     >
       <Fragment>
         {props.icon && <span className="mr-2">{props.icon}</span>}

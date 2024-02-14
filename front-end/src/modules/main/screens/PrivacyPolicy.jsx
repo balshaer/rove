@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 export default function PrivacyPolicy() {
   return (
     <div>
-      <div className="bg-[#f0f5ed] text-[#2b2e4a]">
+      <div className="bg-[#eeeeee] text-[#2b2e4a]">
         <div className="container mx-auto px-4  relative py-20">
           <Link to={"/"} className="absolute top-2 left-0">
             <svg

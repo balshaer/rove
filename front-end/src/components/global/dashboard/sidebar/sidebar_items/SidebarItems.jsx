@@ -8,8 +8,8 @@ function SidebarItem({ title, route, isActive, onClick }) {
         to={route}
         className={`block rounded-lg px-4 py-2 text-sm font-medium ${
           isActive
-            ? "text-[#05c46b] bg-gray-100"
-            : "text-[#666a7b] hover:bg-gray-100 hover:text-[#05c46b]"
+            ? "text-[#040320] bg-gray-100"
+            : "text-[#666a7b] hover:bg-gray-100 hover:text-[#040320]"
         }`}
         onClick={onClick}
       >

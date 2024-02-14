@@ -12,7 +12,7 @@ export default function Button(props) {
 
   return (
     <UIButton
-      className="bg-[#05c46b] text-[#fafafa] rounded-[8px] hover:bg-[#05c46bc2]"
+      className="bg-[#040320] text-[#fafafa] rounded-[8px] hover:bg-[#040320c2]"
       style={buttonStyle}
       {...otherProps}
     >

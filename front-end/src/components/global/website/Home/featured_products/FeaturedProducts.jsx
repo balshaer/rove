@@ -40,13 +40,13 @@ const productData = [
 
 export default function FeaturedProducts() {
   return (
-    <section className="bg-[#f0f5ed] py-20">
+    <section className="bg-[#eeeeee] py-20">
       <div className="max-w-screen-xl m-auto">
         <div className="mx-auto max-w-lg text-center">
           <h2 className="text-2xl font-bold sm:text-4xl text-[#2b2e4a]">
             Kickstart your marketing
           </h2>
-          <h2 className="text-3xl font-bold sm:text-4xl text-[#05c46b]">
+          <h2 className="text-3xl font-bold sm:text-4xl text-[#040320]">
             Kickstart your
           </h2>
           <p className="mt-4 text-[#666a7b]">
@@ -59,7 +59,7 @@ export default function FeaturedProducts() {
           {productData.map((product, index) => (
             <a
               key={index}
-              className="block rounded-xl border border-gray-800 p-8  transition  hover:shadow-[#05c46b]/10"
+              className="block rounded-xl border border-gray-800 p-8  transition  hover:shadow-[#040320]/10"
               href="#"
             >
               <h2 className="mt-4 text-xl font-bold text-[#2b2e4a]">

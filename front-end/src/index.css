@@ -19,7 +19,7 @@ html {
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: #05c46b #cacaca;
+  scrollbar-color: #040320 #cacaca;
 }
 
 *::-webkit-scrollbar {
@@ -41,15 +41,15 @@ html {
 
 *::-webkit-scrollbar-thumb {
   border-radius: 5px;
-  background-color: #05c46b;
+  background-color: #040320;
 }
 
 *::-webkit-scrollbar-thumb:hover {
-  background-color: #05b563;
+  background-color: #eeeeee;
 }
 
 *::-webkit-scrollbar-thumb:active {
-  background-color: #04a259;
+  background-color: #eeeeee;
 }
 
 h1,
@@ -67,8 +67,8 @@ p {
 
 .boujee-text {
   --bg-size: 400%;
-  --color-one: #05c4a7;
-  --color-two: #05c46b;
+  --color-one: #0591c4;
+  --color-two: #040320;
   font-family: sans-serif;
   background: linear-gradient(
       90deg,

@@ -11,7 +11,7 @@ export default function Banner() {
           <div className="mx-auto max-w-xl text-center">
             <h1 className="text-3xl font-extrabold sm:text-5xl text-[#2b2e4a]">
               Understand User Flow.
-              <strong className="font-extrabold text-[#05c46b] sm:block boujee-text">
+              <strong className="font-extrabold text-[#040320] sm:block boujee-text">
                 Increase Conversion.
               </strong>
             </h1>
@@ -21,7 +21,11 @@ export default function Banner() {
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <Link to="/Register">
-                <Button text="Get Started" />
+                <Button
+                  className="h-full bg-[#040320] hover:bg-[#040320c2]"
+                  height="100%"
+                  text="Get Started"
+                />
               </Link>
 
               <Link to="/About">

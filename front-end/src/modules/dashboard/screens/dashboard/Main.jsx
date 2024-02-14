@@ -5,7 +5,7 @@ import { HiDuplicate, HiCube, HiUsers } from "react-icons/hi";
 import Cookies from "universal-cookie";
 
 const DashboardCard = ({ title, icon, value }) => (
-  <div className="h-32 rounded-lg bg-[#f0f5ed] p-4">
+  <div className="h-32 rounded-lg bg-[#eeeeee] p-4">
     <header className="w-full h-1/3 flex justify-between items-center">
       <span>{title}</span>
       <span>{icon}</span>

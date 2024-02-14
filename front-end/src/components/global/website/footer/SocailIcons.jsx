@@ -6,7 +6,7 @@ export default function SocailIcons() {
           href="/"
           rel="noreferrer"
           target="_blank"
-          className="text-[#05c46b] transition hover:text-[#05c46b]/75"
+          className="text-[#040320] transition hover:text-[#040320]/75"
         >
           <span className="sr-only">Facebook</span>
           <svg
@@ -28,7 +28,7 @@ export default function SocailIcons() {
           href="/"
           rel="noreferrer"
           target="_blank"
-          className="text-[#05c46b] transition hover:text-[#05c46b]/75"
+          className="text-[#040320] transition hover:text-[#040320]/75"
         >
           <span className="sr-only">Instagram</span>
           <svg
@@ -50,7 +50,7 @@ export default function SocailIcons() {
           href="/"
           rel="noreferrer"
           target="_blank"
-          className="text-[#05c46b] transition hover:text-[#05c46b]/75"
+          className="text-[#040320] transition hover:text-[#040320]/75"
         >
           <span className="sr-only">Twitter</span>
           <svg
@@ -68,7 +68,7 @@ export default function SocailIcons() {
           href="/"
           rel="noreferrer"
           target="_blank"
-          className="text-[#05c46b] transition hover:text-[#05c46b]/75"
+          className="text-[#040320] transition hover:text-[#040320]/75"
         >
           <span className="sr-only">GitHub</span>
           <svg
@@ -90,7 +90,7 @@ export default function SocailIcons() {
           href="/"
           rel="noreferrer"
           target="_blank"
-          className="text-[#05c46b] transition hover:text-[#05c46b]/75"
+          className="text-[#040320] transition hover:text-[#040320]/75"
         >
           <span className="sr-only">Dribbble</span>
           <svg

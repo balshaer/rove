@@ -4,7 +4,7 @@ import { Loader2 } from "lucide-react";
 export default function ButtonLoading(props) {
   return (
     <UIButtonLoading
-      className="bg-[#05c46bda] text-[#fafafadd] w-full rounded-[8px] hover:bg-[#05c46bda] flex items-center justify-center gap-1"
+      className="bg-[#040320da] text-[#fafafadd] w-full rounded-[8px] hover:bg-[#040320da] flex items-center justify-center gap-1"
       type="submit"
     >
       <span>{props.text}</span>
