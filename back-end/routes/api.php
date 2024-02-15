@@ -1,9 +1,10 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\socialAuthController;
 use App\Http\Controllers\UsersContoller;
-use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,12 +35,19 @@ Route::get('/auth/google/callback', [socialAuthController::class, 'handleCallbac
 Route::middleware('auth:api')->group(function () {
     // Users
     Route::get('/user', [UsersContoller::class, 'authUser']);
-    Route::middleware('checkEditor')->controller(UsersContoller::class)->group(function () {
+    Route::middleware('checkAdmin')->controller(UsersContoller::class)->group(function () {
         Route::get('/users', 'GetUsers');
         Route::get('/user/{id}', 'getUser');
         Route::post('/user/edit/{id}', 'editUser');
         Route::post('/user/add', 'addUser');
         Route::delete('/user/{id}', 'destroy');
+    });
+    Route::middleware('checkProductManager')->controller(CategoryController::class)->group(function () {
+        Route::get('/categories', 'index');
+        Route::get('/category/{id}', 'show');
+        Route::post('/category/edit/{id}', 'edit');
+        Route::post('/category/add', 'store');
+        Route::delete('/category/{id}', 'destroy');
     });
 
     // Auth
