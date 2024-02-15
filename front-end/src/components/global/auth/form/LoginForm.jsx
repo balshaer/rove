@@ -36,9 +36,18 @@ export default function LoginForm() {
           Authorization: `Bearer ${token}`,
         },
       });
-      cookie.set("Bearer", res.data.token);
+      const role = res.data.user.role;
 
-      window.location.pathname = "/dashboard/showUsers";
+      if (role === "1995") {
+        window.location.pathname = "/dashboard/main/";
+        cookie.set("Bearer", res.data.token);
+      } else if (role === "1996") {
+        window.location.pathname = "/dashboard/writer/";
+        cookie.set("Bearer", res.data.token);
+      } else {
+        window.location.pathname = "/";
+        cookie.set("Bearer", res.data.token);
+      }
     } catch (err) {
       console.log(err);
 

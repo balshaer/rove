@@ -21,9 +21,7 @@ export default function RequireAuth({ allowedRole }) {
       .then((data) => setUser(data.data));
   }, []);
 
-  console.log("ALLOWED ROLE" + allowedRole);
 
-  console.log("USER ROLE" + user.role);
 
   return token ? (
     user === "" ? (

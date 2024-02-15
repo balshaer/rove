@@ -19,6 +19,7 @@ import EditUser from "@/modules/dashboard/screens/users/EditUser";
 import Main from "@/modules/dashboard/screens/dashboard/Main";
 import Products from "@/modules/main/screens/Products";
 import Writer from "@/modules/writer/Writer";
+import Requireaback from "@/modules/auth/static/Requireaback";
 
 export default function Routes() {
   return (
@@ -27,8 +28,11 @@ export default function Routes() {
       <Route path="about" element={<About />} />
       <Route path="products" element={<Products />} />
 
-      <Route path="register" element={<Register />} />
-      <Route path="login" element={<Login />} />
+      <Route element={<Requireaback />}>
+        <Route path="register" element={<Register />} />
+        <Route path="login" element={<Login />} />
+      </Route>
+
       <Route path="PrivacyPolicy" element={<PrivacyPolicy />} />
       <Route path="/auth/google/callback" element={<GoogleCallBack />} />
       <Route path="404" element={<NotFound />} />

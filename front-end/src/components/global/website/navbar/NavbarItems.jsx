@@ -2,7 +2,10 @@
 import { Link } from "react-router-dom";
 import NavbarButtons from "./NavbarButtons";
 
+
 const NavbarItems = () => {
+
+
   return (
     <ul className="h-full w-full flex items-center justify-center max-md:flex-col gap-4 font-medium">
       <NavItem to="/" label="Home" />

@@ -43,7 +43,7 @@ export default function RegisterForm() {
 
       cookie.set("Bearer", res.data.token);
 
-      window.location.pathname = "/dashboard/showUsers";
+      window.location.pathname = "/";
     } catch (err) {
       setLoading(false);
       console.log(err);

@@ -7,8 +7,6 @@ export default function SidebarFooter() {
   async function handleLogout() {
     const token = Cookies.get("Bearer");
 
-    console.log("Here ___________________________________" + token);
-
     try {
       await axios.get(`${BASEURL}${LOGOUT}`, {
         headers: {
