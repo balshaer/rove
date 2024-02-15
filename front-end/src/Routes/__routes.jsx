@@ -18,6 +18,7 @@ import NotFound from "@/modules/auth/screens/errors/NotFound";
 import EditUser from "@/modules/dashboard/screens/users/EditUser";
 import Main from "@/modules/dashboard/screens/dashboard/Main";
 import Products from "@/modules/main/screens/Products";
+import Writer from "@/modules/writer/Writer";
 
 export default function Routes() {
   return (
@@ -32,8 +33,10 @@ export default function Routes() {
       <Route path="/auth/google/callback" element={<GoogleCallBack />} />
       <Route path="404" element={<NotFound />} />
 
-      <Route element={<Requireauth />}>
-        <Route path="dashboard" element={<Dashboard />}>
+      {/* <Route element={<Requireauth />}> */}
+
+      <Route path="dashboard" element={<Dashboard />}>
+        <Route element={<Requireauth allowedRole={["1995"]} />}>
           <Route path="main" element={<Main />} />
           <Route path="ShowUsers" element={<ShowUsers />} />
           <Route path="AddUser" element={<AddUser />} />
@@ -41,10 +44,15 @@ export default function Routes() {
           <Route path="addCategory" element={<AddCategories />} />
           <Route path="ShowProducts" element={<ShowProducts />} />
           <Route path="AddProduct" element={<AddProducts />} />
-
           <Route path="users/:id" element={<EditUser />} />
         </Route>
+
+        <Route element={<Requireauth allowedRole={["1995", "1996"]} />}>
+          <Route path="writer" element={<Writer />} />
+        </Route>
       </Route>
+
+      {/* </Route> */}
     </AllRoutes>
   );
 }
