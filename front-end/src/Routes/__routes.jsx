@@ -64,6 +64,9 @@ export default function Routes() {
           </Route>
         </Route>
       </Route>
+
+      <Route path="profile" element={<Profile />} />
+
     </AllRoutes>
   );
 }

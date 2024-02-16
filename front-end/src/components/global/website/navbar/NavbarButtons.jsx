@@ -4,6 +4,7 @@ import Button from "@/components/custom/buttons/Button";
 import { BASEURL, LOGOUT } from "@/core/api/API";
 import axios from "axios";
 import Cookies from "js-cookie";
+import ProfileMenu from "../../../custom/profile_menu/ProfileMenu";
 export default function NavbarButtons() {
   const token = Cookies.get("Bearer");
 
@@ -25,16 +26,7 @@ export default function NavbarButtons() {
 
   return (
     <div className=" gap-2 sm:flex max-md:flex max-md:flex-col max-md:items-center max-md:justify-center max-md:w-[100%] max-md:gap-2">
-      {token && (
-        <Link onClick={handleLogout} className="max-md:w-full">
-          <Button
-            height="100%"
-            width=""
-            text="Logout"
-            className="max-md:w-full bg-[#040320] hover:bg-[#040320]"
-          />
-        </Link>
-      )}
+      {token && <ProfileMenu />}
 
       {!token && (
         <>
