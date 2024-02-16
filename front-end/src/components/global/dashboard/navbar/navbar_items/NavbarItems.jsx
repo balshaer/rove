@@ -14,7 +14,8 @@ import { BASEURL, LOGOUT } from "@/core/api/API";
 import { OpenMenuContext } from "@/core/context/OpenMenu";
 import { Axios } from "@/core/api/Axios";
 import { USER } from "@/core/api/API";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+
+import ProfileAvatar from "@/components/custom/avatar/ProfileAvatar";
 
 async function handleLogout() {
   const token = Cookies.get("Bearer");
@@ -40,8 +41,6 @@ function UserProfile() {
 
   const id = user.id;
 
-  const capitalizedFirstLetter = user.name.charAt(0);
-
   useEffect(() => {
     Axios.get(`${USER}`)
       .then((response) => {
@@ -56,12 +55,7 @@ function UserProfile() {
   return (
     <div className="sticky inset-x-0 bottom-0 border-t text-start">
       <a href="#" className="flex items-center gap-2  p-4 ">
-        <Avatar>
-          <AvatarImage />
-          <AvatarFallback className="capitalize font-semibold">
-            {capitalizedFirstLetter}
-          </AvatarFallback>
-        </Avatar>
+        <ProfileAvatar />
         <div>
           <p className="text-xs">
             <strong className="block font-medium">{user.name}</strong>
