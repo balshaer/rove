@@ -9,3 +9,7 @@ export const LOGOUT = `logout`;
 export const USERS = `users`;
 
 export const USER = `user`;
+
+export const CATEGORIES = `categories`;
+
+export const CATEGORY = `category`;

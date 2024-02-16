@@ -1,7 +1,8 @@
+/* eslint-disable react/prop-types */
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Cookies from "universal-cookie";
+import Cookies from "js-cookie";
 import { BASEURL, USER } from "@/core/api/API";
 
 function SidebarTag({ children }) {
@@ -29,8 +30,7 @@ function SidebarItems() {
     localStorage.getItem("activeItem") || "/dashboard/showUsers"
   );
 
-  const cookies = new Cookies();
-  const token = cookies.get("Bearer");
+  const token = Cookies.get("Bearer");
   const [user, setUser] = useState("");
 
   useEffect(() => {
@@ -101,6 +101,22 @@ function SidebarItems() {
 
       {user.role === "1996" && (
         <SidebarItem key="writer" title="Writer" route="/dashboard/writer" />
+      )}
+
+      {user.role === "1999" && (
+        <>
+          <SidebarItem
+            key="categories"
+            title="Categories"
+            route="/dashboard/showCategories"
+          />
+
+          <SidebarItem
+            key="newCategory"
+            title="New Category"
+            route="/dashboard/addCategory"
+          />
+        </>
       )}
     </ul>
   );

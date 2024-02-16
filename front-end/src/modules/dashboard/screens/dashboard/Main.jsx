@@ -2,7 +2,7 @@
 import AnimatedComponent from "@/components/custom/animation/AnimatedComponent";
 
 import { HiDuplicate, HiCube, HiUsers } from "react-icons/hi";
-import Cookies from "universal-cookie";
+import Cookies from "js-cookie";
 
 const DashboardCard = ({ title, icon, value }) => (
   <div className="h-32 rounded-lg bg-[#eeeeee] p-4">
@@ -17,8 +17,7 @@ const DashboardCard = ({ title, icon, value }) => (
 );
 
 const Main = () => {
-  const cookie = new Cookies();
-  const totalUsers = cookie.get("TotalUsers");
+  const totalUsers = Cookies.get("TotalUsers");
 
   return (
     <AnimatedComponent>

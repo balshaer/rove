@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import Cookies from "universal-cookie";
+import Cookies from "js-cookie";
 import axios from "axios";
 import { Input } from "@/components/ui/input";
 import Button from "@/components/custom/buttons/Button";
@@ -24,15 +24,13 @@ export default function RegisterForm() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const cookie = new Cookies();
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setAccept(true);
     setLoading(true);
 
     try {
-      const token = cookie.get("token");
+      const token = Cookies.get("token");
 
       const res = await axios.post(`${BASEURL}${REGISTER}`, form, {
         headers: {
@@ -41,7 +39,7 @@ export default function RegisterForm() {
         },
       });
 
-      cookie.set("Bearer", res.data.token);
+      Cookies.set("Bearer", res.data.token);
 
       window.location.pathname = "/";
     } catch (err) {

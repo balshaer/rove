@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Cookies from "universal-cookie";
+import Cookies from "js-cookie";
 import { Input } from "@/components/ui/input";
 import Button from "@/components/custom/buttons/Button";
 import ButtonDisabled from "@/components/custom/buttons/ButtonDisabled";
@@ -10,9 +10,7 @@ import { Axios } from "@/core/api/Axios";
 import { USER } from "@/core/api/API";
 import AnimatedComponent from "@/components/custom/animation/AnimatedComponent";
 
-
 const AddUser = () => {
-  const cookie = new Cookies();
   const navigate = useNavigate();
 
   const [name, setName] = useState("");
@@ -24,7 +22,7 @@ const AddUser = () => {
     e.preventDefault();
 
     try {
-      const token = cookie.get("Bearer");
+      const token = Cookies.get("Bearer");
 
       await Axios.post(`${USER}/add`, {
         name: name,
@@ -33,7 +31,7 @@ const AddUser = () => {
         role: role.value,
       });
 
-      cookie.set("Bearer", token);
+      Cookies.set("Bearer", token);
 
       navigate("/dashboard/showUsers");
     } catch (err) {
@@ -112,6 +110,7 @@ const options = [
   { value: "2001", label: "User" },
   { value: "1996", label: "Writer" },
   { value: "1995", label: "Admin" },
+  { value: "1999", label: "Product Manger" },
 ];
 
 const InputField = ({

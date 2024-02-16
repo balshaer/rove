@@ -1,8 +1,7 @@
+/* eslint-disable react/no-unescaped-entities */
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import Cookies from "universal-cookie";
 import axios from "axios";
-
 import { Input } from "@/components/ui/input";
 import Button from "@/components/custom/buttons/Button";
 import InputError from "@/components/custom/errors/input_error/InputError";
@@ -10,13 +9,13 @@ import OrLine from "../or_line/OrLine";
 import ButtonGoogle from "@/components/custom/buttons/ButtonGoogle";
 import ButtonLoading from "@/components/custom/buttons/ButtonLoading";
 import { BASEURL, LOGIN } from "@/core/api/API";
+import Cookies from "js-cookie";
 
 export default function LoginForm() {
   const [accept, setAccept] = useState(false);
   const [loading, setLoading] = useState(false);
   const [emailError, setEmailError] = useState(false);
   const [form, setForm] = useState({ email: "", password: "" });
-  const cookie = new Cookies();
 
   const handleFormChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -27,7 +26,7 @@ export default function LoginForm() {
     setAccept(true);
     setLoading(true);
 
-    const token = cookie.get("Bearer");
+    const token = Cookies.get("Bearer");
 
     try {
       let res = await axios.post(`${BASEURL}${LOGIN}`, form, {
@@ -39,14 +38,21 @@ export default function LoginForm() {
       const role = res.data.user.role;
 
       if (role === "1995") {
-        window.location.pathname = "/dashboard/main/";
-        cookie.set("Bearer", res.data.token);
+        Cookies.set("Bearer", res.data.token);
+
+        window.location.pathname = "/dashboard/main";
       } else if (role === "1996") {
-        window.location.pathname = "/dashboard/writer/";
-        cookie.set("Bearer", res.data.token);
+        Cookies.set("Bearer", res.data.token);
+
+        window.location.pathname = "/dashboard/writer";
+      } else if (role === "1999") {
+        Cookies.set("Bearer", res.data.token);
+
+        window.location.pathname = "/dashboard/showcategories/";
       } else {
+        Cookies.set("Bearer", res.data.token);
+
         window.location.pathname = "/";
-        cookie.set("Bearer", res.data.token);
       }
     } catch (err) {
       console.log(err);

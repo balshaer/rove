@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Cookies from "universal-cookie";
 import TableSkeleton from "@/components/custom/skeletons/TableSkeleton";
 import { useToast } from "@/components/ui/use-toast";
 import {
@@ -14,6 +13,7 @@ import {
 import { BASEURL, USER, USERS } from "@/core/api/API";
 import { Axios } from "@/core/api/Axios";
 import { Link } from "react-router-dom";
+import Cookies from "js-cookie";
 
 const UsersTable = () => {
   const [userData, setUserData] = useState([]);
@@ -23,9 +23,8 @@ const UsersTable = () => {
   const TotalUsers = userData.length;
   localStorage.setItem("TotalUsers", TotalUsers);
 
-  const cookie = new Cookies();
 
-  cookie.set("TotalUsers", TotalUsers);
+  Cookies.set("TotalUsers", TotalUsers);
 
   async function handleDeleteUser(id) {
     try {
@@ -43,8 +42,7 @@ const UsersTable = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const cookie = new Cookies();
-        const token = cookie.get("Bearer");
+        const token = Cookies.get("Bearer");
 
         const response = await axios.get(`${BASEURL}${USERS}`, {
           headers: {

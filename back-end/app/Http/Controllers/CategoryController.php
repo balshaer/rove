@@ -96,6 +96,6 @@ class CategoryController extends Controller
         if (File::exists($path)) {
             File::delete($path);
         }
-        $category::destroy();
+        $category::destroy($id);
     }
 }

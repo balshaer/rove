@@ -97,3 +97,8 @@ p {
     background-position: var(--bg-size) 0;
   }
 }
+
+::selection {
+  background-color: #040320;
+  color: #ffffff;
+}

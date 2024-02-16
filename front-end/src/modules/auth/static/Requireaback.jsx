@@ -1,10 +1,9 @@
 import { Navigate, Outlet } from "react-router-dom";
-import Cookies from "universal-cookie";
+import Cookies from "js-cookie";
 import { useToast } from "@/components/ui/use-toast";
 
 export default function Requireaback() {
-  const cookies = new Cookies();
-  const token = cookies.get("Bearer");
+  const token = Cookies.get("Bearer");
   const { toast } = useToast();
 
   if (token) {

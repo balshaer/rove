@@ -5,22 +5,23 @@ import Button from "@/components/custom/buttons/Button";
 import ButtonDisabled from "@/components/custom/buttons/ButtonDisabled";
 import { USER } from "@/core/api/API";
 import { Axios } from "@/core/api/Axios";
-import Select from "react-select";
 import AnimatedComponent from "@/components/custom/animation/AnimatedComponent";
+import { CATEGORY } from "@/core/api/API";
 
-const EditUser = () => {
-  const [user, setUser] = useState({ name: "", email: "", role: null });
+const EditCategory = () => {
+  const [category, setCategory] = useState({ title: "", inputImage: null });
   const navigate = useNavigate();
-  const id = Number(window.location.pathname.replace("/dashboard/users/", ""));
-  const isFormInvalid =
-    user.name === "" || user.email === "" || user.role === null;
+  const id = Number(
+    window.location.pathname.replace("/dashboard/category/", "")
+  );
+  const isFormInvalid = category.title === "" || category.inputImage === null;
 
   const handleChange = (e) => {
-    setUser({ ...user, [e.target.name]: e.target.value });
+    setCategory({ ...category, [e.target.name]: e.target.value });
   };
 
-  const handleRoleChange = (selectedOption) => {
-    setUser({ ...user, role: selectedOption });
+  const handleImageChange = (e) => {
+    setCategory({ ...category, inputImage: e.target.files[0] });
   };
 
   const handleSubmit = async (e) => {
@@ -28,32 +29,25 @@ const EditUser = () => {
 
     try {
       await Axios.post(`${USER}/edit/${id}`, {
-        name: user.name,
-        email: user.email,
-        role: user.role.value,
+        title: category.name,
+        inputImage: category.inputImage,
       });
-      navigate("/dashboard/showUsers");
+      navigate("/dashboard/showCategories");
     } catch (err) {
       console.error(err);
     }
   };
 
   useEffect(() => {
-    Axios.get(`${USER}/${id}`)
+    Axios.get(`${CATEGORY}/${id}`)
       .then((response) => {
-        const { name, email, role } = response.data;
-        setUser({ name, email, role: { value: role, label: role } });
+        const { title, inputImage } = response.data;
+        setCategory({ title, inputImage });
       })
       .catch((error) => {
-        console.error("Error fetching user data:", error);
+        console.error("Error fetching category data:", error);
       });
   }, [id]);
-
-  const options = [
-    { value: "2001", label: "User" },
-    { value: "1996", label: "Writer" },
-    { value: "1995", label: "Admin" },
-  ];
 
   return (
     <AnimatedComponent className="mx-auto w-full RegisterForm">
@@ -62,35 +56,26 @@ const EditUser = () => {
           onSubmit={handleSubmit}
           className="mb-0 mt-6 space-y-4 rounded-lg p-4 w-full sm:p-6 lg:p-8"
         >
-          <p className="text-center text-lg font-medium">Edit User</p>
+          <p className="text-center text-lg font-medium">Edit Category</p>
           <div className="w-full">
             <Input
               label="Full Name"
-              name="name"
-              value={user.name}
+              name="title"
+              value={category.title}
               onChange={handleChange}
-              placeholder="Enter Full Name"
+              placeholder="Enter Title"
               minLength={1}
             />
           </div>
           <div className="w-full">
             <Input
-              label="Email"
-              name="email"
-              value={user.email}
-              onChange={handleChange}
-              type="email"
-              placeholder="Enter Email"
+              label="imageInput"
+              name="imageInput"
+              type="file"
+              className="h-max"
+              onChange={handleImageChange}
+              placeholder="Select image of category"
               minLength={1}
-            />
-          </div>
-          <div className="w-full">
-            <Select
-              onChange={handleRoleChange}
-              name="role"
-              id="role"
-              value={user.role}
-              options={options}
             />
           </div>
 
@@ -105,4 +90,4 @@ const EditUser = () => {
   );
 };
 
-export default EditUser;
+export default EditCategory;

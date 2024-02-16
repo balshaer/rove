@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,13 +9,15 @@ import {
 } from "@/components/ui/dropdown-menu";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import Cookies from "universal-cookie";
+import Cookies from "js-cookie";
 import { BASEURL, LOGOUT } from "@/core/api/API";
 import { OpenMenuContext } from "@/core/context/OpenMenu";
+import { Axios } from "@/core/api/Axios";
+import { USER } from "@/core/api/API";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 async function handleLogout() {
-  const cookie = new Cookies();
-  const token = cookie.get("Bearer");
+  const token = Cookies.get("Bearer");
 
   try {
     await axios.get(`${BASEURL}${LOGOUT}`, {
@@ -25,7 +27,7 @@ async function handleLogout() {
       },
     });
 
-    cookie.remove("Bearer");
+    Cookies.remove("Bearer");
 
     window.location.pathname = "/";
   } catch (error) {
@@ -34,18 +36,36 @@ async function handleLogout() {
 }
 
 function UserProfile() {
+  const [user, setUser] = useState({ name: "", email: "", role: null });
+
+  const id = user.id;
+
+  const capitalizedFirstLetter = user.name.charAt(0);
+
+  useEffect(() => {
+    Axios.get(`${USER}`)
+      .then((response) => {
+        const { name, email, role } = response.data;
+        setUser({ name, email, role: { value: role, label: role } });
+      })
+      .catch((error) => {
+        console.error("Error fetching user data:", error);
+      });
+  }, [id]);
+
   return (
     <div className="sticky inset-x-0 bottom-0 border-t text-start">
       <a href="#" className="flex items-center gap-2  p-4 ">
-        <img
-          alt="Man"
-          src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-          className="h-10 w-10 rounded-full object-cover"
-        />
+        <Avatar>
+          <AvatarImage />
+          <AvatarFallback className="capitalize font-semibold">
+            {capitalizedFirstLetter}
+          </AvatarFallback>
+        </Avatar>
         <div>
           <p className="text-xs">
-            <strong className="block font-medium">Eric Frusciante</strong>
-            <span> eric@frusciante.com </span>
+            <strong className="block font-medium">{user.name}</strong>
+            <span> {user.email} </span>
           </p>
         </div>
       </a>

@@ -20,6 +20,9 @@ import Main from "@/modules/dashboard/screens/dashboard/Main";
 import Products from "@/modules/main/screens/Products";
 import Writer from "@/modules/writer/Writer";
 import Requireaback from "@/modules/auth/static/Requireaback";
+import Forbidden from "@/modules/auth/screens/errors/Forbidden";
+import EditCategory from "@/modules/dashboard/screens/categories/EditCategory";
+import Profile from "../modules/dashboard/screens/profile/Profile";
 
 export default function Routes() {
   return (
@@ -35,28 +38,32 @@ export default function Routes() {
 
       <Route path="PrivacyPolicy" element={<PrivacyPolicy />} />
       <Route path="/auth/google/callback" element={<GoogleCallBack />} />
-      <Route path="404" element={<NotFound />} />
-
-      {/* <Route element={<Requireauth />}> */}
-
-      <Route path="dashboard" element={<Dashboard />}>
-        <Route element={<Requireauth allowedRole={["1995"]} />}>
+      <Route path="/*" element={<NotFound />} />
+      <Route path="403" element={<Forbidden />} />
+      <Route element={<Requireauth allowedRole={["1995", "1996", "1999"]} />}>
+        <Route path="dashboard" element={<Dashboard />}>
           <Route path="main" element={<Main />} />
+          <Route path="profile" element={<Profile />} />
+
           <Route path="ShowUsers" element={<ShowUsers />} />
+
           <Route path="AddUser" element={<AddUser />} />
-          <Route path="ShowCategories" element={<ShowCategories />} />
-          <Route path="addCategory" element={<AddCategories />} />
+
+          <Route element={<Requireauth allowedRole={["1999", "1995"]} />}>
+            <Route path="ShowCategories" element={<ShowCategories />} />
+            <Route path="addCategory" element={<AddCategories />} />
+            <Route path="category/:id" element={<EditCategory />} />
+          </Route>
+
           <Route path="ShowProducts" element={<ShowProducts />} />
           <Route path="AddProduct" element={<AddProducts />} />
           <Route path="users/:id" element={<EditUser />} />
-        </Route>
 
-        <Route element={<Requireauth allowedRole={["1995", "1996"]} />}>
-          <Route path="writer" element={<Writer />} />
+          <Route element={<Requireauth allowedRole={["1995", "1996"]} />}>
+            <Route path="writer" element={<Writer />} />
+          </Route>
         </Route>
       </Route>
-
-      {/* </Route> */}
     </AllRoutes>
   );
 }

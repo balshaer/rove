@@ -1,10 +1,8 @@
 import axios from "axios";
-import Cookies from "universal-cookie";
+import Cookies from "js-cookie";
 import { BASEURL } from "./API";
 
-const cookie = new Cookies();
-
-const token = cookie.get("Bearer");
+const token = Cookies.get("Bearer");
 
 export const Axios = axios.create({
   baseURL: BASEURL,
