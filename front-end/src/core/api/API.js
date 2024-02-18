@@ -13,3 +13,7 @@ export const USER = `user`;
 export const CATEGORIES = `categories`;
 
 export const CATEGORY = `category`;
+
+export const PRODUCTS = `products`;
+
+export const PRODUCT = `product`;

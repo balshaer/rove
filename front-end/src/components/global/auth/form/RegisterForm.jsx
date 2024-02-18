@@ -30,7 +30,7 @@ export default function RegisterForm() {
     setLoading(true);
 
     try {
-      const token = Cookies.get("token");
+      const token = Cookies.get("Bearer");
 
       const res = await axios.post(`${BASEURL}${REGISTER}`, form, {
         headers: {

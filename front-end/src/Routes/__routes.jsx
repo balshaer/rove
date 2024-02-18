@@ -22,7 +22,8 @@ import Writer from "@/modules/writer/Writer";
 import Requireaback from "@/modules/auth/static/Requireaback";
 import Forbidden from "@/modules/auth/screens/errors/Forbidden";
 import EditCategory from "@/modules/dashboard/screens/categories/EditCategory";
-import Profile from "../modules/dashboard/screens/profile/Profile";
+import Profile from "@/modules/dashboard/screens/profile/Profile";
+import EditProduct from "@/modules/dashboard/screens/products/EditProduct";
 
 export default function Routes() {
   return (
@@ -58,6 +59,7 @@ export default function Routes() {
           <Route path="ShowProducts" element={<ShowProducts />} />
           <Route path="AddProduct" element={<AddProducts />} />
           <Route path="users/:id" element={<EditUser />} />
+          <Route path="product/:id" element={<EditProduct />} />
 
           <Route element={<Requireauth allowedRole={["1995", "1996"]} />}>
             <Route path="writer" element={<Writer />} />
@@ -66,7 +68,6 @@ export default function Routes() {
       </Route>
 
       <Route path="profile" element={<Profile />} />
-
     </AllRoutes>
   );
 }

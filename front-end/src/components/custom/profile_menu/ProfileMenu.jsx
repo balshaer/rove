@@ -14,6 +14,7 @@ import { BASEURL, LOGOUT } from "@/core/api/API";
 import { OpenMenuContext } from "@/core/context/OpenMenu";
 import { Axios } from "@/core/api/Axios";
 import { USER } from "@/core/api/API";
+import { HiOutlineCreditCard } from "react-icons/hi2";
 
 import ProfileAvatar from "@/components/custom/avatar/ProfileAvatar";
 
@@ -54,7 +55,10 @@ function UserProfile() {
 
   return (
     <div className="sticky inset-x-0 bottom-0 border-t text-start">
-      <a href="#" className="flex items-center gap-2  p-4 ">
+      <a
+        href="#"
+        className="flex items-center gap-2  p-4 border-none outline-none focus:outline-none focus:border-none active:border-none active:outline-none "
+      >
         <ProfileAvatar />
         <div>
           <p className="text-xs">
@@ -75,7 +79,7 @@ export default function ProfileMenu() {
   }
 
   return (
-    <div className="w-full flex justify-between flex-row-reverse items-center">
+    <div className="w-full flex justify-between flex-row-reverse items-center ">
       <DropdownMenu>
         <DropdownMenuTrigger>
           <ul className="flex items-center gap-6 text-sm flex-row-reverse">
@@ -87,6 +91,18 @@ export default function ProfileMenu() {
         <DropdownMenuContent className="w-full min-w-40 bg-[#f7f7f7]">
           <DropdownMenuLabel>My Profile</DropdownMenuLabel>
           <DropdownMenuSeparator />
+
+          <DropdownMenuItem>
+            <Link
+              className="w-full flex justify-between flex-row items-center"
+              to="/dashboard/main"
+            >
+              <span>Dashboard</span>
+              <span>
+                <HiOutlineCreditCard />
+              </span>
+            </Link>
+          </DropdownMenuItem>
           <DropdownMenuItem>
             <Link
               className="w-full flex justify-between flex-row items-center"

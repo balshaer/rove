@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
+import { Link } from "react-router-dom";
 import TableSkeleton from "@/components/custom/skeletons/TableSkeleton";
 import { useToast } from "@/components/ui/use-toast";
 import {
@@ -11,27 +12,22 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { BASEURL, USER, USERS } from "@/core/api/API";
+import { BASEURL, PRODUCTS, PRODUCT } from "@/core/api/API";
 import { Axios } from "@/core/api/Axios";
-import { Link } from "react-router-dom";
+import { CATEGORIES } from "@/core/api/API";
 
 const ProductTable = () => {
-  const [userData, setUserData] = useState([]);
+  const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [reloadUseEffects, setReloadEffects] = useState(false);
+  const [reloadEffects, setReloadEffects] = useState(false);
   const { toast } = useToast();
-  const TotalUsers = userData.length;
-  localStorage.setItem("TotalUsers", TotalUsers);
 
-  Cookies.set("TotalUsers", TotalUsers);
-
-  async function handleDeleteUser(id) {
+  async function handleDeleteProduct(id) {
     try {
-      const res = await Axios.delete(`${BASEURL}${USER}/${id}`);
-      console.log(res);
+      await Axios.delete(`${BASEURL}${PRODUCT}/${id}`);
       setReloadEffects((prev) => !prev);
       toast({
-        description: "User deleted",
+        description: "Product deleted",
       });
     } catch (err) {
       console.log(err);
@@ -43,13 +39,32 @@ const ProductTable = () => {
       try {
         const token = Cookies.get("Bearer");
 
-        const response = await axios.get(`${BASEURL}${USERS}`, {
-          headers: {
-            Accept: "application/json",
-            Authorization: `Bearer ${token}`,
-          },
+        const [productsResponse, categoriesResponse] = await Promise.all([
+          axios.get(`${BASEURL}${PRODUCTS}`, {
+            headers: {
+              Accept: "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }),
+          axios.get(`${BASEURL}${CATEGORIES}`, {
+            headers: {
+              Accept: "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }),
+        ]);
+
+        const productsData = productsResponse.data;
+        const categoriesData = categoriesResponse.data;
+
+        const productsWithCategoryTitles = productsData.map((product) => {
+          const category = categoriesData.find(
+            (category) => category.id === product.category
+          );
+          return { ...product, category: category ? category.title : "" };
         });
-        setUserData(response.data);
+
+        setProducts(productsWithCategoryTitles);
       } catch (error) {
         console.log(error);
       } finally {
@@ -58,16 +73,19 @@ const ProductTable = () => {
     };
 
     fetchData();
-  }, [reloadUseEffects]);
+  }, [reloadEffects]);
 
   return loading ? (
     <Table className="relative h-[100vh] overflow-hidden">
       <TableHeader>
         <TableRow>
           <TableHead className="w-[100px]">ID</TableHead>
-          <TableHead>Name</TableHead>
-          <TableHead>Email</TableHead>
-          <TableHead>Role</TableHead>
+          <TableHead>Category</TableHead>
+          <TableHead>Title</TableHead>
+          <TableHead>Description</TableHead>
+          <TableHead>Discount</TableHead>
+          <TableHead>Price</TableHead>
+          <TableHead>About</TableHead>
           <TableHead className="text-right">Actions</TableHead>
         </TableRow>
       </TableHeader>
@@ -81,18 +99,21 @@ const ProductTable = () => {
       <TableHeader>
         <TableRow>
           <TableHead className="w-[100px]">ID</TableHead>
-          <TableHead>Name</TableHead>
-          <TableHead>Email</TableHead>
-          <TableHead>Role</TableHead>
+          <TableHead>Category</TableHead>
+          <TableHead>Title</TableHead>
+          <TableHead>Description</TableHead>
+          <TableHead>Discount</TableHead>
+          <TableHead>Price</TableHead>
+          <TableHead>About</TableHead>
           <TableHead className="text-right">Actions</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
-        {userData.length === 0 ? (
+        {products.length === 0 ? (
           <TableRow>
             <TableCell colSpan={4} style={{ textAlign: "center" }}>
               <div className="flex gap-1 items-center justify-center">
-                <span>No user found</span>
+                <span>No products found</span>
                 <span className="pt-[2px]">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -113,22 +134,20 @@ const ProductTable = () => {
             </TableCell>
           </TableRow>
         ) : (
-          userData.map((user, index) => (
-            <TableRow key={user.id}>
+          products.map((product, index) => (
+            <TableRow key={product.id}>
               <TableCell className="font-medium">{index + 1}</TableCell>
-              <TableCell>{user.name}</TableCell>
-              <TableCell>{user.email}</TableCell>
-              <TableCell>
-                {user.role === "1995"
-                  ? "Admin"
-                  : user.role === "2001"
-                  ? "User"
-                  : "Writer"}
-              </TableCell>
+              <TableCell>{product.category}</TableCell>
+              <TableCell>{product.title}</TableCell>
+              <TableCell>{product.description}</TableCell>
+              <TableCell>{product.discount}</TableCell>
+              <TableCell>{product.price}</TableCell>
+              <TableCell>{product.About}</TableCell>
+
               <TableCell className="text-right flex gap-2 w-full  items-center justify-end">
                 <button
                   className="bg-gray-200 p-1.5 rounded-xl transition-all translate-x-3 hover:bg-gray-300 hover:opacity-95"
-                  onClick={() => handleDeleteUser(user.id)}
+                  onClick={() => handleDeleteProduct(product.id)}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -144,7 +163,7 @@ const ProductTable = () => {
                   </svg>
                 </button>
 
-                <Link to={`/dashboard/users/${user.id}`}>
+                <Link to={`/dashboard/product/${product.id}`}>
                   <button className="bg-gray-200 p-1.5 rounded-xl transition-all translate-x-3 hover:bg-gray-300 hover:opacity-95">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
