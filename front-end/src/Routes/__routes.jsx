@@ -17,20 +17,21 @@ import AddProducts from "@/modules/dashboard/screens/products/AddProducts";
 import NotFound from "@/modules/auth/screens/errors/NotFound";
 import EditUser from "@/modules/dashboard/screens/users/EditUser";
 import Main from "@/modules/dashboard/screens/dashboard/Main";
-import Products from "@/modules/main/screens/Products";
+
 import Writer from "@/modules/writer/Writer";
 import Requireaback from "@/modules/auth/static/Requireaback";
 import Forbidden from "@/modules/auth/screens/errors/Forbidden";
 import EditCategory from "@/modules/dashboard/screens/categories/EditCategory";
 import Profile from "@/modules/dashboard/screens/profile/Profile";
 import EditProduct from "@/modules/dashboard/screens/products/EditProduct";
+import ProductsGallery from "@/modules/main/screens/ProductsGallery";
 
 export default function Routes() {
   return (
     <AllRoutes>
       <Route path="/" element={<Home />} />
       <Route path="about" element={<About />} />
-      <Route path="products" element={<Products />} />
+      <Route path="products" element={<ProductsGallery />} />
 
       <Route element={<Requireaback />}>
         <Route path="register" element={<Register />} />

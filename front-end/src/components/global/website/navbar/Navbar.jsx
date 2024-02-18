@@ -15,7 +15,7 @@ export default function Navbar() {
 
   return (
     <header className="Navbar">
-      <div className="mx-auto flex h-16 max-w-screen-xl items-center gap-8 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-16 max-w-screen-xl items-center gap-8 ">
         <Link to="/" className="block text-teal-600">
           <span className="sr-only">Home</span>
 
