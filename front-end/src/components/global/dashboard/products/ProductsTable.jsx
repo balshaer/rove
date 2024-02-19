@@ -113,7 +113,7 @@ const ProductTable = () => {
           <TableRow>
             <TableCell colSpan={4} style={{ textAlign: "center" }}>
               <div className="flex gap-1 items-center justify-center">
-                <span>No products found</span>
+                <span>No Products found</span>
                 <span className="pt-[2px]">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
