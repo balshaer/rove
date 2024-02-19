@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import NavbarItems from "./NavbarItems";
 import NavbarButtons from "./NavbarButtons";
-import Logo from "@/components/ui/logo/Logo";
 import {
   Sheet,
   SheetContent,
@@ -14,12 +13,10 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="Navbar">
+    <header className="Navbar ">
       <div className="mx-auto flex h-16 max-w-screen-xl items-center gap-8 ">
-        <Link to="/" className="block text-teal-600">
+        <Link to="/" className="block text-teal-600 ">
           <span className="sr-only">Home</span>
-
-          {/* <Logo /> */}
         </Link>
         <div className="flex flex-1 items-center justify-end md:justify-between">
           <nav aria-label="Global" className="hidden md:block">
@@ -64,7 +61,6 @@ export default function Navbar() {
           </div>
         </div>
       </div>
-      {/* Responsive Navbar Items */}
       {isOpen && <div className="md:hidden flex"></div>}
     </header>
   );

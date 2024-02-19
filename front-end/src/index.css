@@ -20,6 +20,7 @@ html {
 * {
   scrollbar-width: thin;
   scrollbar-color: #040320 #cacaca;
+  scroll-behavior: smooth;
 }
 
 *::-webkit-scrollbar {
@@ -101,4 +102,31 @@ p {
 ::selection {
   background-color: #040320;
   color: #ffffff;
+}
+
+.hoverd {
+  transition: all 0.3s ease 0s !important;
+}
+
+@keyframes moving-bar {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-moving-bar {
+  animation: moving-bar 500s linear infinite;
+}
+
+.banner-carousel-item {
+  transform: translateX(-360px);
+  opacity: 1;
+  transition: transform 500ms ease 0s;
+}
+
+.about-us {
+  background: linear-gradient(to right, #ffffff 70%, #1e1e1e 30%);
 }

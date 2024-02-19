@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import AnimatedComponent from "@/components/custom/animation/AnimatedComponent";
-
 import { HiDuplicate, HiCube, HiUsers } from "react-icons/hi";
 import Cookies from "js-cookie";
 
