@@ -40,8 +40,11 @@ export default function SidebarFooter() {
   );
 
   return (
-    <div className="sticky inset-x-0 bottom-0 border-t border-gray-100 p-4">
-      <span onClick={handleLogout} className="flex items-center gap-2 ">
+    <div className="sticky inset-x-0 bottom-0 border-t border-gray-100 p-4 max-md:w-full ">
+      <span
+        onClick={handleLogout}
+        className="flex items-center gap-2 max-md:w-full "
+      >
         <Button text="Logout" icon={logoutIcon} />
       </span>
     </div>

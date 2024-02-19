@@ -107,6 +107,7 @@ export default function AddProducts() {
   return (
     <AnimatedComponent>
       <form onSubmit={handleSubmit} className="flex gap-4 flex-col">
+        <p className="text-center text-lg font-medium">Add a new product</p>
         <div>
           <Select
             onChange={(selectedOption) =>

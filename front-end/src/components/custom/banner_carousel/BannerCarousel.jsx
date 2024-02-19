@@ -9,7 +9,7 @@ import {
 
 export default function BannerCarousel() {
   return (
-    <div className="w-1/2 h-full   flex items-center justify-center  px-20">
+    <div className="w-1/2 h-full  max-md:w-full  flex items-center justify-center  max-md:px-4 px-20">
       <AnimatedComponent>
         <Carousel>
           <CarouselContent>

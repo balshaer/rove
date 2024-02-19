@@ -1,19 +1,13 @@
 import { Outlet } from "react-router-dom";
 import Sidebar from "@/components/global/dashboard/sidebar/Sidebar";
 import Navbar from "@/components/global/dashboard/navbar/Navbar";
-import { useContext } from "react";
-import { OpenMenuContext } from "@/core/context/OpenMenu";
 
 export default function Dashboard() {
-  const { openMenu } = useContext(OpenMenuContext);
-
   return (
-    <div className="flex flex-row h-screen bg-[#fafafa] max-md:w-fit max-md:h-full ">
-      {openMenu && (
-        <div className=" lg:w-64 max-md:w-full">
-          <Sidebar />
-        </div>
-      )}
+    <div className="flex flex-row h-screen bg-[#fafafa] max-md:w-full max-md:m-auto  ">
+      <div className=" lg:w-64 hidden lg:block">
+        <Sidebar />
+      </div>
 
       <div className="flex flex-col flex-1 ">
         <Navbar />

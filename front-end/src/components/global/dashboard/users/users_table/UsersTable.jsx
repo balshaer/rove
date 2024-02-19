@@ -23,7 +23,6 @@ const UsersTable = () => {
   const TotalUsers = userData.length;
   localStorage.setItem("TotalUsers", TotalUsers);
 
-
   Cookies.set("TotalUsers", TotalUsers);
 
   async function handleDeleteUser(id) {
@@ -62,7 +61,7 @@ const UsersTable = () => {
   }, [reloadUseEffects]);
 
   return loading ? (
-    <Table className="relative h-[100vh] overflow-hidden">
+    <Table className="relative h-[100vh] overflow-hidden max-md:text-xs max-md:w-full">
       <TableHeader>
         <TableRow>
           <TableHead className="w-[100px]">ID</TableHead>
@@ -78,7 +77,7 @@ const UsersTable = () => {
       </div>
     </Table>
   ) : (
-    <Table>
+    <Table className="max-md:text-xs max-md:w-full ">
       <TableHeader>
         <TableRow>
           <TableHead className="w-[100px]">ID</TableHead>

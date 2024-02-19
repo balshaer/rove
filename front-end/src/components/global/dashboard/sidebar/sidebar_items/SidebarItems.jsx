@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import { BASEURL, USER } from "@/core/api/API";
+import * as SheetPrimitive from "@radix-ui/react-dialog";
 
 function SidebarTag({ children }) {
   return <li className="text-[0.7rem] font-[400] py-3">{children}</li>;
@@ -29,6 +30,7 @@ function SidebarItems() {
   const [activeItem, setActiveItem] = useState(
     localStorage.getItem("activeItem") || "/dashboard/showUsers"
   );
+  const closeMenu = SheetPrimitive.Close;
 
   const token = Cookies.get("Bearer");
   const [user, setUser] = useState("");
@@ -47,10 +49,6 @@ function SidebarItems() {
     localStorage.setItem("activeItem", activeItem);
   }, [activeItem]);
 
-  const handleItemClick = (route) => {
-    setActiveItem(route);
-  };
-
   return (
     <ul className="mt-6 space-y-1">
       {user.role === "1995" && (
@@ -62,16 +60,19 @@ function SidebarItems() {
             Quick Links
           </SidebarTag>
           <SidebarItem
+            onClick={closeMenu}
             key="dashboard"
             title="Dashboard"
             route="/dashboard/main"
           />
           <SidebarItem
+            onClick={closeMenu}
             key="newProduct"
             title="New Product"
             route="/dashboard/addProduct"
           />
           <SidebarItem
+            onClick={closeMenu}
             key="newCategory"
             title="New Category"
             route="/dashboard/addCategory"
@@ -79,19 +80,32 @@ function SidebarItems() {
           <SidebarTag key="catalog" className="capitalize">
             Catalog
           </SidebarTag>
-          <SidebarItem key="users" title="Users" route="/dashboard/showUsers" />
-          <SidebarItem key="writer" title="Writer" route="/dashboard/writer" />
           <SidebarItem
+            onClick={closeMenu}
+            key="users"
+            title="Users"
+            route="/dashboard/showUsers"
+          />
+          <SidebarItem
+            onClick={closeMenu}
+            key="writer"
+            title="Writer"
+            route="/dashboard/writer"
+          />
+          <SidebarItem
+            onClick={closeMenu}
             key="categories"
             title="Categories"
             route="/dashboard/showCategories"
           />
           <SidebarItem
+            onClick={closeMenu}
             key="products"
             title="Products"
             route="/dashboard/showProducts"
           />
           <SidebarItem
+            onClick={closeMenu}
             key="addUser"
             title="Add User"
             route="/dashboard/addUser"
@@ -100,18 +114,25 @@ function SidebarItems() {
       )}
 
       {user.role === "1996" && (
-        <SidebarItem key="writer" title="Writer" route="/dashboard/writer" />
+        <SidebarItem
+          onClick={closeMenu}
+          key="writer"
+          title="Writer"
+          route="/dashboard/writer"
+        />
       )}
 
       {user.role === "1999" && (
         <>
           <SidebarItem
+            onClick={closeMenu}
             key="categories"
             title="Categories"
             route="/dashboard/showCategories"
           />
 
           <SidebarItem
+            onClick={closeMenu}
             key="newCategory"
             title="New Category"
             route="/dashboard/addCategory"

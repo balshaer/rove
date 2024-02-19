@@ -25,7 +25,7 @@ export default function NavbarButtons() {
   }
 
   return (
-    <div className=" gap-2 sm:flex max-md:flex max-md:flex-col max-md:items-center max-md:justify-center max-md:w-[100%] max-md:gap-2">
+    <div className=" max-md:mt-0  gap-2 sm:flex max-md:flex max-md:flex-col max-md:items-center max-md:justify-center max-md:w-[100%] max-md:gap-2">
       {token && <ProfileMenu />}
 
       {!token && (
@@ -40,7 +40,7 @@ export default function NavbarButtons() {
           </Link>
           <Link to="/Register" className="max-md:w-full">
             <ButtonOutline text="Register" className="max-md:w-full" />
-          </Link>{" "}
+          </Link>
         </>
       )}
     </div>

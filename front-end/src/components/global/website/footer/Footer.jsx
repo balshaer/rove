@@ -7,7 +7,7 @@ export default function Footer() {
   return (
     <footer className="bg-[#141414]  text-white ">
       <div className="mx-auto max-w-screen-xl px-4 pb-6 pt-16 sm:px-6 lg:px-8 lg:pt-24">
-        <div className="w-full flex justify-between">
+        <div className="w-full flex justify-between max-md:flex-col">
           <div>
             <FooterLogo />
 

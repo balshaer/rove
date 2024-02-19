@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
 import { Link as ScrollLink } from "react-scroll";
 import NavbarButtons from "./NavbarButtons";
@@ -6,7 +7,7 @@ import Logo from "@/components/ui/logo/Logo";
 const NavbarItems = () => {
   return (
     <ul className="h-full w-full flex items-center justify-center max-md:flex-col gap-4 font-medium">
-      <span>
+      <span className="max-md:hidden">
         <Logo />
       </span>
 

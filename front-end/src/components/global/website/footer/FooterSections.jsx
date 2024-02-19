@@ -18,7 +18,7 @@ const FooterSections = () => (
   <div className="flex justify-start text-start items-start w-full gap-24">
     <div className="text-center sm:text-left">
       <p className="text-lg font-bold text-[#ffffff] ">IMPORTANT LINKS</p>
-      <ul className="mt-8 space-y-4 text-sm list-disc">
+      <ul className="mt-8 space-y-4 text-sm list-disc text-start max-md:px-4">
         <FooterLink to="home" label="BEGINNING" />
         <FooterLink to="partners" label="PARTNERS" />
         <FooterLink to="aboutus" label="ABOUT US" />

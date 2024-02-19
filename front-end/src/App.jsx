@@ -14,7 +14,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="bg-[#ffffff] min-h-[100vh] relative">
+    <div className="bg-[#ffffff] min-h-[100vh] relative ">
       <Toaster />
 
       {isLoading && <Loading />}

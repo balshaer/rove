@@ -1,12 +1,12 @@
 export default function AboutUs() {
   return (
-    <div className=" about-us w-full" id="aboutus">
-      <div className="flex justify-between items-center h-[80vh] max-w-screen-xl m-auto">
-        <div className="w-1/2">
-          <h1 className="text-3xl font-extrabold sm:text-5xl text-[#2b2e4a]">
+    <div className=" about-us w-full " id="aboutus">
+      <div className="flex justify-between items-center max-md:pt-10  h-[80vh] max-md:bg-white max-md:h-max max-w-screen-xl m-auto max-md:flex-col max-md:text-center max-md:justify-center max-md:items-center">
+        <div className="w-1/2 max-md:w-full">
+          <h1 className=" max-md:px-4 text-3xl font-extrabold sm:text-5xl text-[#2b2e4a]">
             About us
           </h1>
-          <p className="mt-4 sm:text-xl/relaxed text-[#666a7b]">
+          <p className="mt-4  max-md:px-4 sm:text-xl/relaxed text-[#666a7b]">
             With more than 20 years of tradition in the commercial
             representation of fashion, Rove distributes the best brands to
             multi-brand retailers throughout Palestine. From footwear such as
@@ -18,9 +18,9 @@ export default function AboutUs() {
           </p>
         </div>
 
-        <div className="w-1/3 relative  flex items-center justify-center bg-[#1e1e1e] h-full ">
+        <div className="w-1/3 max-md:pt-4 relative  flex items-center justify-center max-md:bg-white bg-[#1e1e1e] h-full max-md:flex-col max-md:text-center max-md:justify-center max-md:items-center max-md:w-full ">
           <img
-            className=" absolute left-[-120px] top-0 m-auto bottom-0"
+            className=" absolute max-md:relative max-md:left-0 left-[-120px] top-0 m-auto bottom-0"
             src="https://uploads-ssl.webflow.com/6230851dfbef4b4d05285e07/623094bd106ddf724da49140_Grupo%20de%20ma%CC%81scara%203.png"
             alt="company"
           />

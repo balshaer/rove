@@ -64,7 +64,7 @@ const CategoriesTable = () => {
   }, [reloadUseEffects]);
 
   return loading ? (
-    <Table className="relative h-[100vh] overflow-hidden">
+    <Table className="relative h-[100vh] overflow-hidden max-md:text-xs max-md:w-full">
       <TableHeader>
         <TableRow>
           <TableHead className="w-[100px]">ID</TableHead>
@@ -80,7 +80,7 @@ const CategoriesTable = () => {
       </div>
     </Table>
   ) : (
-    <Table>
+    <Table className="max-md:text-xs max-md:w-full">
       <TableHeader>
         <TableRow>
           <TableHead className="w-[100px]">ID</TableHead>

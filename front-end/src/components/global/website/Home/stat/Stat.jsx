@@ -32,9 +32,9 @@ const partnersData = [
 ];
 
 const Stat = () => (
-  <div className="w-full bg-[#eeeeee]" id="partners">
+  <div className="w-full bg-[#eeeeee] max-md:py-10 max-md:px-4" id="partners">
     <section className="m-auto max-w-screen-2xl">
-      <div className="mx-auto max-w-screen-xl px-4 py-12 sm:px-6 md:py-16 lg:px-8">
+      <div className="mx-auto max-w-screen-xl px-4 py-12 max-md:py-0 max-md:px-0 sm:px-6 md:py-16 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="text-3xl font-bold text-gray-900">PARTNERS</h2>
           <p className="mt-4 text-gray-500 sm:text-xl">

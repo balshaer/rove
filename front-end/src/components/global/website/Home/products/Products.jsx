@@ -3,9 +3,9 @@ import Button from "@/components/custom/buttons/Button";
 export default function Products() {
   return (
     <section>
-      <div className="max-w-screen-xl m-auto py-20">
+      <div className="max-w-screen-xl m-auto py-20 bg-[#eeeeee] max-md:px-4">
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:items-stretch">
-          <div className="grid place-content-center rounded bg-gray-100 p-6 sm:p-8">
+          <div className="grid place-content-center rounded  p-6 sm:p-8">
             <div className="mx-auto max-w-md text-center lg:text-left">
               <header>
                 <h2 className="text-xl font-bold text-gray-900 sm:text-3xl">
