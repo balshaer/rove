@@ -72,7 +72,7 @@ const ProductsGallery = () => {
     <div>
       <Navbar />
 
-      <div className="max-w-screen-xl m-auto py-10">
+      <div className="max-w-screen-xl m-auto px-4 py-10">
         <header className="py-10 flex justify-between items-center">
           <div>
             <Select

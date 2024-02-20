@@ -4,7 +4,7 @@ import Navbar from "@/components/global/dashboard/navbar/Navbar";
 
 export default function Dashboard() {
   return (
-    <div className="flex flex-row h-screen bg-[#fafafa] max-md:w-full max-md:m-auto  ">
+    <div className="flex flex-row h-screen bg-[#fafafa] max-md:w-full max-md:m-auto  max-md:overflow-x-scroll ">
       <div className=" lg:w-64 hidden lg:block">
         <Sidebar />
       </div>

@@ -5,17 +5,19 @@ import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import { BASEURL, USER } from "@/core/api/API";
 import * as SheetPrimitive from "@radix-ui/react-dialog";
-import SideBarSkeleton from "../../../../custom/skeletons/SideBarSkeleton";
+import SideBarSkeleton from "@/components/custom/skeletons/SideBarSkeleton";
 
 function SidebarTag({ children }) {
-  return <li className="text-[0.7rem] font-[400] py-3">{children}</li>;
+  return (
+    <li className="text-[0.7rem] font-[400] py-3 max-md:hidden">{children}</li>
+  );
 }
 
 function SidebarItem({ title, route, isActive, onClick }) {
   return (
     <Link
       to={route}
-      className={`block rounded-lg px-4 py-2 text-sm font-medium ${
+      className={`block rounded-lg px-4 py-2 text-sm font-medium max-md:text-lg ${
         isActive
           ? "text-[#040320] bg-gray-100"
           : "text-[#666a7b] hover:bg-gray-100 hover:text-[#040320]"
@@ -28,9 +30,6 @@ function SidebarItem({ title, route, isActive, onClick }) {
 }
 
 function SidebarItems() {
-  const [activeItem, setActiveItem] = useState(
-    localStorage.getItem("activeItem") || "/dashboard/showUsers"
-  );
   const closeMenu = SheetPrimitive.Close;
 
   const [loading, setLoading] = useState(true);
@@ -55,20 +54,16 @@ function SidebarItems() {
       });
   }, [token]);
 
-  useEffect(() => {
-    localStorage.setItem("activeItem", activeItem);
-  }, [activeItem]);
-
   if (loading) {
     return <SideBarSkeleton />;
   } else {
     return (
-      <ul className="mt-6 space-y-1">
+      <ul className="mt-6 space-y-1 max-md:flex max-md:flex-col max-md:gap-4 ">
         {user.role === "1995" && (
           <>
             <SidebarTag
               key="quickLinks"
-              className="capitalize active:bg-transparent"
+              className="capitalize active:bg-transparent "
             >
               Quick Links
             </SidebarTag>

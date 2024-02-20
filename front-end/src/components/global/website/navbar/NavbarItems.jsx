@@ -30,7 +30,7 @@ const NavItem = ({ to, label }) => (
   <li className="relative">
     <Link
       to={to}
-      className="text-[#2b2e4a] uppercase hoverd font-semibold hover:bg-[#eeeeee] p-2 rounded-lg"
+      className="text-[#2b2e4a] text-sm uppercase hoverd font-semibold hover:bg-[#eeeeee] p-2 rounded-lg"
     >
       {label}
     </Link>
@@ -43,7 +43,7 @@ const NavItemScroll = ({ to, label }) => (
       to={to}
       smooth={true}
       duration={500}
-      className="text-[#2b2e4a] uppercase hoverd font-semibold hover:bg-[#eeeeee] p-2 rounded-lg"
+      className="text-[#2b2e4a]  text-sm  uppercase hoverd font-semibold hover:bg-[#eeeeee] p-2 rounded-lg"
     >
       {label}
     </ScrollLink>

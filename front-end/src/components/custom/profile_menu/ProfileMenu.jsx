@@ -16,6 +16,7 @@ import { USER } from "@/core/api/API";
 import { HiOutlineCreditCard } from "react-icons/hi2";
 
 import ProfileAvatar from "@/components/custom/avatar/ProfileAvatar";
+import ProfileMenuSkeleton from "../skeletons/ProfileMenuSkeleton";
 
 async function handleLogout() {
   const token = Cookies.get("Bearer");
@@ -37,42 +38,47 @@ async function handleLogout() {
 }
 
 function UserProfile() {
+  const [loading, setLoading] = useState(true);
   const [user, setUser] = useState({ name: "", email: "", role: null });
 
-  const id = user.id;
-
   useEffect(() => {
-    Axios.get(`${USER}`)
-      .then((response) => {
+    const fetchData = async () => {
+      try {
+        const response = await Axios.get(`${USER}`);
         const { name, email, role } = response.data;
         setUser({ name, email, role: { value: role, label: role } });
-      })
-      .catch((error) => {
+        setLoading(false);
+      } catch (error) {
         console.error("Error fetching user data:", error);
-      });
-  }, [id]);
+        setLoading(false);
+      }
+    };
 
-  return (
-    <div className="sticky inset-x-0 bottom-0 border-t text-start">
-      <a
-        href="#"
-        className="flex items-center gap-2  p-4 border-none outline-none focus:outline-none focus:border-none active:border-none active:outline-none "
-      >
-        <ProfileAvatar />
-        <div>
-          <p className="text-xs">
-            <strong className="block font-medium">{user.name}</strong>
-            <span> {user.email} </span>
-          </p>
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return <ProfileMenuSkeleton />;
+  } else {
+    return (
+      <div className="sticky inset-x-0 bottom-0 border-t text-start ">
+        <div className="flex items-center gap-2  p-4 border-none outline-none focus:outline-none focus:border-none active:border-none active:outline-none ">
+          <ProfileAvatar />
+          <div>
+            <p className="text-xs">
+              <strong className="block font-medium">{user.name}</strong>
+              <span> {user.email} </span>
+            </p>
+          </div>
         </div>
-      </a>
-    </div>
-  );
+      </div>
+    );
+  }
 }
 
 export default function ProfileMenu() {
   return (
-    <div className="w-full flex justify-between flex-row-reverse items-center ">
+    <div className="w-full flex justify-between flex-row-reverse items-center rmborder  max-md:justify-center  max-md:absolute max-md:bottom-0 max-md:right-0 max-md:left-0 max-md:m-auto">
       <DropdownMenu>
         <DropdownMenuTrigger>
           <ul className="flex items-center gap-6 text-sm flex-row-reverse">
@@ -170,7 +176,6 @@ export default function ProfileMenu() {
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
-
     </div>
   );
 }

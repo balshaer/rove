@@ -18,9 +18,9 @@ export default function OurShowRoom() {
   );
 
   return (
-    <section className="max-md:px-4 max-md:py-10 bg-[#141414] h-[100vh]  flex justify-center items-center max-md:h-max max-md:w-full max-md:flex-col max-md:items-center max-md:justify-center max-md:text-center  ">
-      <div className="max-w-screen-xl m-auto flex w-full items-center justify-center h-full max-md:flex-col max-md:items-center max-md:justify-center max-md:text-center max-md:gap-8 max-md:py-20 ">
-        <div className="w-1/2 max-md:w-full flex flex-col gap-4">
+    <section className="max-lg:px-4  max-lg:py-10 bg-[#141414] h-[100vh]  flex justify-center items-center max-lg:h-max max-lg:w-full max-lg:flex-col max-lg:items-center max-lg:justify-center max-lg:text-center  ">
+      <div className="max-w-screen-xl m-auto flex w-full items-center justify-center h-full max-lg:flex-col max-lg:items-center max-lg:justify-center max-lg:text-center max-lg:gap-8 max-lg:py-20 ">
+        <div className="w-1/2 max-lg:w-full flex flex-col gap-4 ">
           <div>
             <h1 className="text-3xl font-extrabold sm:text-5xl text-[#fff]">
               OUR SHOWROOM
@@ -39,7 +39,7 @@ export default function OurShowRoom() {
           </div>
         </div>
 
-        <div className="w-1/2 max-md:w-full flex items-center justify-center max-md:px-10">
+        <div className="w-1/2 max-lg:w-full flex items-center justify-center max-lg:px-10">
           <Carousel
             plugins={[plugin.current]}
             className="w-full  "

@@ -2,7 +2,7 @@ import UsersTable from "@/components/global/dashboard/users/users_table/UsersTab
 
 export default function Users() {
   return (
-    <div>
+    <div className="max-md:">
       <UsersTable />
     </div>
   );
