@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { useEffect, useState } from "react";
 import {
   DropdownMenu,
@@ -10,37 +11,18 @@ import {
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
-import { BASEURL, LOGOUT } from "@/core/api/API";
+import { BASEURL, LOGOUT, USER } from "@/core/api/API";
 import { Axios } from "@/core/api/Axios";
-import { USER } from "@/core/api/API";
 import { HiOutlineCreditCard } from "react-icons/hi2";
 
 import ProfileAvatar from "@/components/custom/avatar/ProfileAvatar";
 import ProfileMenuSkeleton from "../skeletons/ProfileMenuSkeleton";
 
-async function handleLogout() {
-  const token = Cookies.get("Bearer");
-
-  try {
-    await axios.get(`${BASEURL}${LOGOUT}`, {
-      headers: {
-        Accept: "application/json",
-        Authorization: "Bearer " + token,
-      },
-    });
-
-    Cookies.remove("Bearer");
-
-    window.location.pathname = "/";
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-function UserProfile() {
+function ProfileMenu() {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState({ name: "", email: "", role: null });
 
+  console.log(user);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -57,33 +39,48 @@ function UserProfile() {
     fetchData();
   }, []);
 
-  if (loading) {
-    return <ProfileMenuSkeleton />;
-  } else {
-    return (
-      <div className="sticky inset-x-0 bottom-0 border-t text-start ">
-        <div className="flex items-center gap-2  p-4 border-none outline-none focus:outline-none focus:border-none active:border-none active:outline-none ">
-          <ProfileAvatar />
-          <div>
-            <p className="text-xs">
-              <strong className="block font-medium">{user.name}</strong>
-              <span> {user.email} </span>
-            </p>
-          </div>
-        </div>
-      </div>
-    );
-  }
-}
+  const handleLogout = async () => {
+    const token = Cookies.get("Bearer");
 
-export default function ProfileMenu() {
+    try {
+      await axios.get(`${BASEURL}${LOGOUT}`, {
+        headers: {
+          Accept: "application/json",
+          Authorization: "Bearer " + token,
+        },
+      });
+
+      Cookies.remove("Bearer");
+
+      window.location.pathname = "/";
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="w-full flex justify-between flex-row-reverse items-center rmborder  max-md:justify-center  max-md:absolute  max-md:bottom-4  max-md:shadow-none max-md:border-t-[#00000050] max-md:border  max-md:right-0 max-md:left-0 max-md:m-auto">
       <DropdownMenu>
         <DropdownMenuTrigger>
           <ul className="flex items-center gap-6 text-sm flex-row-reverse">
             <li>
-              <UserProfile />
+              {loading ? (
+                <ProfileMenuSkeleton />
+              ) : (
+                <div className="sticky inset-x-0 bottom-0 border-t text-start ">
+                  <div className="flex items-center gap-2  p-4 border-none outline-none focus:outline-none focus:border-none active:border-none active:outline-none ">
+                    <ProfileAvatar />
+                    <div>
+                      <p className="text-xs">
+                        <strong className="block font-medium">
+                          {user.name}
+                        </strong>
+                        <span> {user.email} </span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              )}
             </li>
           </ul>
         </DropdownMenuTrigger>
@@ -91,17 +88,19 @@ export default function ProfileMenu() {
           <DropdownMenuLabel>My Profile</DropdownMenuLabel>
           <DropdownMenuSeparator />
 
-          <DropdownMenuItem>
-            <Link
-              className="w-full flex justify-between flex-row items-center"
-              to="/dashboard/main"
-            >
-              <span>Dashboard</span>
-              <span>
-                <HiOutlineCreditCard />
-              </span>
-            </Link>
-          </DropdownMenuItem>
+          {user.role && user.role.value !== "2001" && (
+            <DropdownMenuItem>
+              <Link
+                className="w-full flex justify-between flex-row items-center"
+                to="/dashboard/main"
+              >
+                <span>Dashboard</span>
+                <span>
+                  <HiOutlineCreditCard />
+                </span>
+              </Link>
+            </DropdownMenuItem>
+          )}
           <DropdownMenuItem>
             <Link
               className="w-full flex justify-between flex-row items-center"
@@ -179,3 +178,5 @@ export default function ProfileMenu() {
     </div>
   );
 }
+
+export default ProfileMenu;

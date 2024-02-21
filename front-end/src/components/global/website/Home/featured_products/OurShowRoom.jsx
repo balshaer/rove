@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-target-blank */
 import * as React from "react";
 import Autoplay from "embla-carousel-autoplay";
 import { HiLocationMarker } from "react-icons/hi";
@@ -18,7 +19,7 @@ export default function OurShowRoom() {
   );
 
   return (
-    <section className="max-lg:px-4  max-lg:py-10 bg-[#141414] h-[100vh]  flex justify-center items-center max-lg:h-max max-lg:w-full max-lg:flex-col max-lg:items-center max-lg:justify-center max-lg:text-center  ">
+    <section className="max-lg:px-4  max-lg:py-10 bg-[#141414] h-[100vh] px-10  flex justify-center items-center max-lg:h-max max-lg:w-full max-lg:flex-col max-lg:items-center max-lg:justify-center max-lg:text-center  ">
       <div className="max-w-screen-xl m-auto flex w-full items-center justify-center h-full max-lg:flex-col max-lg:items-center max-lg:justify-center max-lg:text-center max-lg:gap-8 max-lg:py-20 ">
         <div className="w-1/2 max-lg:w-full flex flex-col gap-4 ">
           <div>
@@ -31,18 +32,20 @@ export default function OurShowRoom() {
             </p>
           </div>
           <div>
-            <Button
-              text="view on google maps"
-              className="bg-white text-black  max-w-52"
-              icon={<HiLocationMarker />}
-            />
+            <a href="https://maps.app.goo.gl/PmykGarzB2FFJiM89" target="_blank">
+              <Button
+                text="view on google maps"
+                className="bg-white text-black hover:bg-black hover:text-white hoverd hover:border-1 hover:border-white  max-w-52"
+                icon={<HiLocationMarker />}
+              />
+            </a>
           </div>
         </div>
 
-        <div className="w-1/2 max-lg:w-full flex items-center justify-center max-lg:px-10">
+        <div className="w-1/2 max-lg:w-full flex items-center justify-center max-lg:px-10 px-20">
           <Carousel
             plugins={[plugin.current]}
-            className="w-full  "
+            className="w-full "
             onMouseEnter={plugin.current.stop}
             onMouseLeave={plugin.current.reset}
           >

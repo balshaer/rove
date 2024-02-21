@@ -28,7 +28,7 @@ export default function BannerCarousel() {
             {!loading && (
               <CarouselItem>
                 <img
-                  className="h-full w-full object-contain "
+                  className="h-full min-h-50 w-full object-contain "
                   src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
                   alt="BannerImage"
                 />

@@ -1,6 +1,7 @@
 import Button from "@/components/custom/buttons/Button";
 import { useEffect, useState } from "react";
 import ProductImageSkeleton from "@/components/custom/skeletons/ProductImageSkeleton";
+import { Link } from "react-router-dom";
 
 export default function Products() {
   const [loading, setLoading] = useState(true);
@@ -26,12 +27,14 @@ export default function Products() {
                 </p>
               </header>
 
-              <Button
-                className="bg-[#040320] hover:bg-[#040320c2] my-5"
-                height="40px"
-                width="50%"
-                text="Shop All"
-              />
+              <Link to={"/products"}>
+                <Button
+                  className="bg-[#040320] hover:bg-[#040320c2] my-5"
+                  height="40px"
+                  width="50%"
+                  text="Shop All"
+                />
+              </Link>
             </div>
           </div>
           <div className="lg:col-span-2 lg:py-8">
@@ -62,7 +65,7 @@ export default function Products() {
 
                   {!loading && (
                     <img
-                      src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?q=80&w=1780&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                      src="https://images.unsplash.com/photo-1622434641406-a158123450f9?q=80&w=1904&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                       alt
                       className="aspect-square w-full rounded object-cover"
                     />
