@@ -7,7 +7,9 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { useCart } from "@/core/context/CartContext";
+import * as SheetPrimitive from "@radix-ui/react-dialog";
 import Button from "../buttons/Button";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
 export default function CommerceCart() {
   const { cart, removeFromCart } = useCart();
@@ -15,8 +17,6 @@ export default function CommerceCart() {
   const handleRemoveFromCart = (productId) => {
     removeFromCart(productId);
   };
-
-  console.log(cart);
 
   return (
     <div className="relative">
@@ -65,9 +65,43 @@ export default function CommerceCart() {
               </li>
             ))}
 
-            <div className="absolute bottom-4 right-2 left-2 m-auto">
-              <Button text="Buy" />
-            </div>
+            <Dialog>
+              <DialogTrigger>
+                <div
+                  className="absolute bottom-4 right-2 left-2 m-auto"
+                  onClick={() => SheetPrimitive.Close}
+                >
+                  <Button text="Buy" />
+                </div>
+              </DialogTrigger>
+
+              <DialogContent>
+                <div>
+                  {cart.map((product) => (
+                    <li
+                      key={product.id}
+                      className="bg-gray-100 w-full   flex items-center mt-4 border-[#00000044] border-2 justify-center gap-4 rounded-lg p-5 h-20 "
+                    >
+                      <div className="flex items-center h-full justify-start gap-4 w-full">
+                        <div className="rounded-lg p-3 bg-white h-16 w-16">
+                          <img
+                            src={product.images[0].image}
+                            className="h-full w-full object-contain"
+                            alt={`Product ${product.title}`}
+                          />
+                        </div>
+                        <div>
+                          <div>{product.title}</div>
+                          <div className="text-green-600 font-bold">
+                            ${product.price}
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                  ))}
+                </div>
+              </DialogContent>
+            </Dialog>
           </div>
         </SheetContent>
       </Sheet>

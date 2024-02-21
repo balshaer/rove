@@ -16,8 +16,7 @@ const NavbarItems = () => {
       <NavItem to="/products" label="Products" />
 
       <NavItemScroll to="partners" label="PARTNERS" />
-
-      <NavItem to="/contact" label="CONTACT" />
+      <NavItemScroll to="ContactUs" label="CONTACT" />
 
       <div className="hidden max-md:block max-md:w-full max-md:max-w-60">
         <NavbarButtons />

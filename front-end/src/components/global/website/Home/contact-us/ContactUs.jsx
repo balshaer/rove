@@ -31,7 +31,10 @@ const CheckboxesGroup = ({ legend, checkboxes }) => (
 );
 
 const ContactUs = () => (
-  <div className="bg-white h-max py-20 max-md:px-4 max-md:py-10 w-full max-w-screen-2xl m-auto flex justify-center items-center flex-col">
+  <div
+    id="ContactUs"
+    className="bg-white h-max py-20 max-md:px-4 max-md:py-10 w-full max-w-screen-2xl m-auto flex justify-center items-center flex-col"
+  >
     <h1 className="uppercase text text-[#040320] text-3xl font-medium sm:text-5xl py-10">
       Contact us
     </h1>

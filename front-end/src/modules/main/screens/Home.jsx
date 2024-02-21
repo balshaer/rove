@@ -23,7 +23,7 @@ export default function Home() {
 
         <OurShowRoom />
 
-        <ContactUs />
+  <ContactUs />
       </div>
 
       <Footer />

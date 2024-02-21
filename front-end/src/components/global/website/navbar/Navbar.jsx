@@ -10,6 +10,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import Logo from "@/components/ui/logo/Logo";
+import CommerceCart from "@/components/custom/commerce-cart/CommerceCart";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -34,6 +35,10 @@ export default function Navbar() {
               </div>
 
               <div className="flex justify-center items-center">
+                <div className="me-4  md:hidden">
+                  <CommerceCart />
+                </div>
+
                 <Sheet>
                   <SheetTrigger className="max-md:w-full">
                     <button

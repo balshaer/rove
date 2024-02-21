@@ -78,7 +78,7 @@ function UserProfile() {
 
 export default function ProfileMenu() {
   return (
-    <div className="w-full flex justify-between flex-row-reverse items-center rmborder  max-md:justify-center  max-md:absolute max-md:bottom-0 max-md:right-0 max-md:left-0 max-md:m-auto">
+    <div className="w-full flex justify-between flex-row-reverse items-center rmborder  max-md:justify-center  max-md:absolute  max-md:bottom-4  max-md:shadow-none max-md:border-t-[#00000050] max-md:border  max-md:right-0 max-md:left-0 max-md:m-auto">
       <DropdownMenu>
         <DropdownMenuTrigger>
           <ul className="flex items-center gap-6 text-sm flex-row-reverse">

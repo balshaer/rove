@@ -13,7 +13,9 @@ export default function NavbarButtons() {
         <div className="flex flex-row-reverse items-center justify-center z-50 ">
           <ProfileMenu />
 
-          <CommerceCart />
+          <div className="max-md:hidden">
+            <CommerceCart />
+          </div>
         </div>
       )}
 
