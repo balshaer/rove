@@ -10,7 +10,7 @@ export default function NavbarButtons() {
   return (
     <div className=" max-md:mt-0  gap-2 sm:flex max-md:flex max-md:flex-col max-md:items-center max-md:justify-center max-md:w-[100%] max-md:gap-2">
       {token && (
-        <div className="flex flex-row-reverse items-center justify-center">
+        <div className="flex flex-row-reverse items-center justify-center z-50 ">
           <ProfileMenu />
 
           <CommerceCart />

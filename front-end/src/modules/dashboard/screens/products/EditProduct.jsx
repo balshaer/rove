@@ -8,13 +8,12 @@ import { CATEGORIES, PRODUCT } from "@/core/api/API";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import Select from "react-select";
-
 import { useNavigate } from "react-router-dom";
+
 const EditProduct = () => {
   const [accept, setAccept] = useState(false);
   const [categoryData, setCategoryData] = useState([]);
   const [categoryOptions, setCategoryOptions] = useState([]);
-
   const [productData, setProductData] = useState({
     category: "",
     title: "",
@@ -22,7 +21,11 @@ const EditProduct = () => {
     price: "",
     discount: "",
     About: "",
+    images: [],
   });
+
+  const [newImageUrl, setNewImageUrl] = useState("");
+
   const id = Number(
     window.location.pathname.replace("/dashboard/product/", "")
   );
@@ -38,32 +41,52 @@ const EditProduct = () => {
     productData.category === "";
 
   useEffect(() => {
-    Axios.get(`${PRODUCT}/${id}`).then((data) => setProductData(data.data[0]));
-  }, []);
+    Axios.get(`${PRODUCT}/${id}`).then((data) => {
+      const productData = data.data[0];
+      setProductData(productData);
+      setCategoryData(productData.category);
+    });
+  }, [id]);
 
   useEffect(() => {
     Axios.get(`${CATEGORIES}`)
       .then((response) => {
         const categoryData = response.data;
-
         const options = categoryData.map((categoryItem) => ({
           value: categoryItem.id,
           label: categoryItem.title,
         }));
-
         setCategoryOptions(options);
       })
       .catch((error) => {
         console.error("Error fetching category data:", error);
       });
   }, []);
-  const handleChange = (name, event) => {
-    const value = event.target.value;
+
+  const handleChange = (name, value) => {
     setProductData({ ...productData, [name]: value });
   };
+
+  const onImageChange = (newImageUrls) => {
+    handleChange("images", newImageUrls);
+  };
+
+  const handleImageDelete = (index) => {
+    const newImageUrls = [...productData.images];
+    newImageUrls.splice(index, 1);
+    onImageChange(newImageUrls);
+  };
+
+  const handleImageAdd = () => {
+    if (newImageUrl.trim() !== "") {
+      const newImageUrls = [...productData.images, newImageUrl];
+      onImageChange(newImageUrls);
+      setNewImageUrl("");
+    }
+  };
+
   async function handleSubmit(e) {
     e.preventDefault();
-
     setAccept(true);
 
     await Axios.post(`${PRODUCT}/edit/${id}`, productData).then((data) => {
@@ -72,11 +95,6 @@ const EditProduct = () => {
 
     navigate("/dashboard/showProducts");
   }
-
-  const options = categoryData.map((categoryItem) => ({
-    value: categoryItem.id,
-    label: categoryItem.title,
-  }));
 
   return (
     <AnimatedComponent className="mx-auto w-full RegisterForm">
@@ -100,7 +118,6 @@ const EditProduct = () => {
               options={categoryOptions}
             />
           </div>
-
           <div className="w-full">
             <Input
               label="title"
@@ -157,6 +174,10 @@ const EditProduct = () => {
               placeholder="Fill about section"
               minLength={1}
             />
+          </div>
+
+          <div className="w-full">
+            <img src={productData.images} alt="" />
           </div>
 
           {isFormInvalid ? (

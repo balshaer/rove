@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import { useState, useEffect } from "react";
 import { Axios } from "@/core/api/Axios";
@@ -28,10 +29,10 @@ import { useCart } from "@/core/context/CartContext";
 import { useToast } from "@/components/ui/use-toast";
 import ProductSkeleton from "@/components/custom/skeletons/ProductSkeleton";
 
-export const ProductItem = () => {
+export const ProductItem = ({ productList, selectedCategoryProp }) => {
   const [products, setProducts] = useState([]);
   const [categoryData, setCategoryData] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState("");
   const [loading, setLoading] = useState(true);
   const { addToCart } = useCart();
   const [cart, setCart] = useState([]);
@@ -98,20 +99,20 @@ export const ProductItem = () => {
     fetchData();
   }, []);
 
-  const filteredProducts = selectedCategory
-    ? products.filter(
+  const filteredProducts = selectedCategoryProp
+    ? productList.filter(
         (product) =>
-          selectedCategory.value === null ||
-          product.category === selectedCategory.value
+          selectedCategoryProp.value === null ||
+          product.category === selectedCategoryProp.value
       )
-    : products;
+    : productList;
 
   if (loading) {
     return <ProductSkeleton />;
   }
 
   return (
-    <div className="w-full grid grid-cols-1 gap-10 lg:grid-cols-3 lg:gap-8 group-block">
+    <div className="w-full grid grid-cols-1 gap-10 lg:grid-cols-3 lg:gap-8 group-block ">
       {filteredProducts.map((product) => (
         <div
           key={product.id}
@@ -122,14 +123,12 @@ export const ProductItem = () => {
               <CarouselContent>
                 {product.images.map((image) => (
                   <CarouselItem key={image.id}>
-                    {/* ... (other imports and code) ... */}
-
                     <Dialog>
                       <DialogTrigger className="w-full">
                         <div className="cursor-pointer">
-                          <div className="w-full h-56 flex justify-center items-center rounded-lg">
+                          <div className="w-full h-56 flex justify-center items-center rounded-lg p-0">
                             <img
-                              className="h-1/2 opacity-100 object-contain"
+                              className="h-full w-full opacity-100 object-cover"
                               src={image.image}
                               alt={`Image ${image.id}`}
                             />
@@ -146,7 +145,7 @@ export const ProductItem = () => {
                                   <div className="cursor-pointer">
                                     <div className="w-full h-56 flex justify-center items-center rounded-lg">
                                       <img
-                                        className="h-1/2 opacity-100 object-contain"
+                                        className="h-full w-full opacity-100 object-cover"
                                         src={image.image}
                                         alt={`Image ${image.id}`}
                                       />

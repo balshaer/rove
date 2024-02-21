@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useState, useEffect } from "react";
 import { Axios } from "@/core/api/Axios";
 import { PRODUCTS } from "@/core/api/API";
@@ -10,24 +11,35 @@ import { BASEURL, CATEGORIES } from "@/core/api/API";
 import axios from "axios";
 
 import { ProductItem } from "@/components/global/website/products/ProductItem";
+import ProfileMenuSkeleton from "@/components/custom/skeletons/CoverSkeleton";
 
 const ProductsGallery = () => {
   const [products, setProducts] = useState([]);
   const [categoryData, setCategoryData] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedCategoryImage, setSelectedCategoryImage] = useState(
+    "https://cdn.dribbble.com/userupload/5001738/file/original-30b453e5027e97e54f2279f42e7207cc.png?resize=1200x900"
+  );
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await Axios.get(`${PRODUCTS}`);
+        let apiUrl = PRODUCTS;
+
+        if (selectedCategory && selectedCategory.value !== null) {
+          apiUrl += `?category=${selectedCategory.value}`;
+        }
+
+        const response = await Axios.get(apiUrl);
         setProducts(response.data);
       } catch (error) {
-        console.error("Error fetching product data:", error);
+        console.error(error);
       }
     };
 
     fetchProducts();
-  }, []);
+  }, [selectedCategory]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -40,31 +52,37 @@ const ProductsGallery = () => {
           },
         });
         setCategoryData(response.data);
-        console.log(categoryData);
+        setLoading(false);
       } catch (error) {
-        console.error("Error fetching categories:", error);
+        console.error(error);
+        setLoading(false);
       }
     };
 
     fetchData();
   }, []);
 
+  useEffect(() => {
+    setSelectedCategoryImage(
+      selectedCategory
+        ? selectedCategory.image
+        : "https://cdn.dribbble.com/userupload/5001738/file/original-30b453e5027e97e54f2279f42e7207cc.png?resize=1200x900"
+    );
+  }, [selectedCategory]);
+
   const options = [
-    { value: null, label: "All" },
+    {
+      value: null,
+      label: "All",
+      image:
+        "https://cdn.dribbble.com/userupload/5001738/file/original-30b453e5027e97e54f2279f42e7207cc.png?resize=1200x900",
+    },
     ...categoryData.map((categoryItem) => ({
       value: categoryItem.id,
       label: categoryItem.title,
+      image: categoryItem.image,
     })),
   ];
-
-  const filteredProducts = selectedCategory
-    ? products.filter(
-        (product) =>
-          selectedCategory.value === null ||
-          product.category === selectedCategory.value
-      )
-    : products;
-
   const handleCategoryChange = (selectedOption) => {
     setSelectedCategory(selectedOption);
   };
@@ -73,29 +91,32 @@ const ProductsGallery = () => {
     <div>
       <Navbar />
 
-      <div className="max-w-screen-xl m-auto px-4 py-10">
-        <header className="py-32 flex justify-between items-center  h-20 w-full">
-          <div>
-            <img src={categoryData.image} />
-          </div>
-        </header>
+      {loading && <ProfileMenuSkeleton />}
 
-        <div className="py-10 flex justify-between items-center">
-          <div>
+      {!loading && (
+        <img
+          src={selectedCategoryImage}
+          alt="selectedCategoryImage"
+          className="w-full object-cover h-[500px]  "
+        />
+      )}
+
+      <div className="max-w-screen-xl m-auto px-4 pb-10">
+        <div className="flex justify-between items-center flex-col">
+          <div className="w-full items-center justify-start py-10">
             <Select
               name="category"
               placeholder="Select a category"
               id="category"
               options={options}
+              className="max-w-xs"
+              value={selectedCategory}
               onChange={handleCategoryChange}
             />
           </div>
         </div>
 
-        {/* Render the filtered products */}
-        {filteredProducts.map((product) => (
-          <ProductItem key={product.id} product={product} />
-        ))}
+        <ProductItem productList={products} selectedCategoryProp={selectedCategory} />
       </div>
 
       <Footer />
