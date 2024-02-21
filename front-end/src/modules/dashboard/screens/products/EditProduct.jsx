@@ -57,12 +57,10 @@ const EditProduct = () => {
         console.error("Error fetching category data:", error);
       });
   }, []);
-
-  const handleChange = (name, selectedOption) => {
-    const value = selectedOption ? selectedOption.value : null;
+  const handleChange = (name, event) => {
+    const value = event.target.value;
     setProductData({ ...productData, [name]: value });
   };
-
   async function handleSubmit(e) {
     e.preventDefault();
 
@@ -108,7 +106,7 @@ const EditProduct = () => {
               label="title"
               name="title"
               value={productData.title}
-              onChange={handleChange}
+              onChange={(e) => handleChange("title", e)}
               placeholder="Enter title of product"
               minLength={1}
             />
@@ -117,9 +115,9 @@ const EditProduct = () => {
             <Input
               label="description"
               name="description"
+              onChange={(e) => handleChange("description", e)}
               value={productData.description}
               type="text"
-              onChange={handleChange}
               placeholder="Enter description for product"
               minLength={1}
             />
@@ -130,7 +128,7 @@ const EditProduct = () => {
               label="price"
               name="price"
               type="text"
-              onChange={handleChange}
+              onChange={(e) => handleChange("price", e)}
               placeholder="Enter price for product"
               value={productData.price}
               minLength={1}
@@ -142,7 +140,7 @@ const EditProduct = () => {
               label="discount"
               name="discount"
               type="text"
-              onChange={handleChange}
+              onChange={(e) => handleChange("discount", e)}
               placeholder="Enter discount for product"
               value={productData.discount}
               minLength={1}
@@ -154,7 +152,7 @@ const EditProduct = () => {
               label="About"
               name="About"
               type="text"
-              onChange={handleChange}
+              onChange={(e) => handleChange("About", e)}
               value={productData.About}
               placeholder="Fill about section"
               minLength={1}

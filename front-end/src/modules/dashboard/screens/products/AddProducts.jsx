@@ -9,7 +9,8 @@ import { Axios } from "@/core/api/Axios";
 import { useNavigate } from "react-router-dom";
 import InputError from "@/components/custom/errors/input_error/InputError";
 import AnimatedComponent from "@/components/custom/animation/AnimatedComponent";
-
+import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/components/ui/use-toast";
 export default function AddProducts() {
   const [categoryData, setCategoryData] = useState([]);
   const [formData, setFormData] = useState({
@@ -22,7 +23,7 @@ export default function AddProducts() {
     images: [],
   });
   const [accept, setAccept] = useState(false);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -58,6 +59,7 @@ export default function AddProducts() {
     }));
   };
 
+  const { toast } = useToast();
   const handleSubmit = async (e) => {
     e.preventDefault();
     setAccept(true);
@@ -92,7 +94,21 @@ export default function AddProducts() {
 
         console.log(response.data);
         Cookies.set(token);
-        navigate("/dashboard/showProducts/");
+        setFormData({
+          category: null,
+          title: "",
+          description: "",
+          price: "",
+          discount: "",
+          About: "",
+          images: [],
+        });
+        setAccept(false);
+
+        toast({
+          title: "Product Added Successfully",
+        });
+        // navigate("/dashboard/showProducts/");
       } catch (error) {
         console.log(error);
       }
@@ -123,31 +139,42 @@ export default function AddProducts() {
           )}
         </div>
 
-        {["title", "description", "price", "discount", "About"].map(
-          (fieldName) => (
-            <div key={fieldName}>
-              <Input
-                name={fieldName}
-                required
-                value={formData[fieldName]}
-                onChange={(e) => handleInputChange(fieldName, e.target.value)}
-                className="h-max w-full"
-                type={
-                  fieldName === "price" || fieldName === "discount"
-                    ? "number"
-                    : "text"
-                }
-                placeholder={
-                  fieldName.charAt(0).toUpperCase() + fieldName.slice(1)
-                }
-              />
-              {accept && formData[fieldName] === "" && (
-                <InputError text={`Add the ${fieldName} of the new product`} />
-              )}
-            </div>
-          )
-        )}
+        {["title", "description", "price", "discount"].map((fieldName) => (
+          <div key={fieldName}>
+            <Input
+              name={fieldName}
+              required
+              value={formData[fieldName]}
+              onChange={(e) => handleInputChange(fieldName, e.target.value)}
+              className="h-max w-full"
+              type={
+                fieldName === "price" || fieldName === "discount"
+                  ? "number"
+                  : "text"
+              }
+              placeholder={
+                fieldName.charAt(0).toUpperCase() + fieldName.slice(1)
+              }
+            />
+            {accept && formData[fieldName] === "" && (
+              <InputError text={`Add the ${fieldName} of the new product`} />
+            )}
+          </div>
+        ))}
 
+        <div>
+          <Textarea
+            name="About"
+            required
+            value={formData.About}
+            onChange={(e) => handleInputChange("About", e.target.value)}
+            className="h-max w-full"
+            placeholder="About"
+          />
+          {accept && formData.About === "" && (
+            <InputError text="Add the About information" />
+          )}
+        </div>
         <div>
           <Input
             name="images"

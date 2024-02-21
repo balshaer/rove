@@ -40,6 +40,7 @@ const ProductsGallery = () => {
           },
         });
         setCategoryData(response.data);
+        console.log(categoryData);
       } catch (error) {
         console.error("Error fetching categories:", error);
       }
@@ -73,7 +74,13 @@ const ProductsGallery = () => {
       <Navbar />
 
       <div className="max-w-screen-xl m-auto px-4 py-10">
-        <header className="py-10 flex justify-between items-center">
+        <header className="py-32 flex justify-between items-center  h-20 w-full">
+          <div>
+            <img src={categoryData.image} />
+          </div>
+        </header>
+
+        <div className="py-10 flex justify-between items-center">
           <div>
             <Select
               name="category"
@@ -83,9 +90,12 @@ const ProductsGallery = () => {
               onChange={handleCategoryChange}
             />
           </div>
-        </header>
+        </div>
 
-        <ProductItem />
+        {/* Render the filtered products */}
+        {filteredProducts.map((product) => (
+          <ProductItem key={product.id} product={product} />
+        ))}
       </div>
 
       <Footer />

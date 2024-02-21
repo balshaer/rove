@@ -22,7 +22,6 @@ export default function ProductSkeleton() {
     <div className="flex-col flex bg-white w-full lg:gap-8 group-block min-h-[100vh]">
       {renderSkeletons()}
       {renderSkeletons()}
-      {renderSkeletons()}
     </div>
   );
 }

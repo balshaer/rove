@@ -1,7 +1,9 @@
 /* eslint-disable no-unused-vars */
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { Axios } from "@/core/api/Axios";
-import { PRODUCTS } from "@/core/api/API";
+import { PRODUCTS, BASEURL, CATEGORIES } from "@/core/api/API";
+import Cookies from "js-cookie";
+import axios from "axios";
 
 import {
   Carousel,
@@ -10,25 +12,21 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import Cookies from "js-cookie";
-import { BASEURL, CATEGORIES } from "@/core/api/API";
-import axios from "axios";
-
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
   DialogClose,
+  DialogDescription,
 } from "@/components/ui/dialog";
 import Button from "@/components/custom/buttons/Button";
-import ProductSkeleton from "@/components/custom/skeletons/ProductSkeleton";
 import ButtonLoading from "@/components/custom/buttons/ButtonLoading";
 import Counter from "@/components/custom/cart/counter/Counter";
 import { useCart } from "@/core/context/CartContext";
 import { useToast } from "@/components/ui/use-toast";
+import ProductSkeleton from "@/components/custom/skeletons/ProductSkeleton";
 
 export const ProductItem = () => {
   const [products, setProducts] = useState([]);
@@ -41,7 +39,6 @@ export const ProductItem = () => {
   const [loadingButton, setLoadingButton] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
   const { toast } = useToast();
-  // const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
 
   const handleAddToCart = async (product) => {
     setLoadingButton(true);
@@ -111,129 +108,124 @@ export const ProductItem = () => {
 
   if (loading) {
     return <ProductSkeleton />;
-  } else {
-    return (
-      <div className="w-full grid grid-cols-1 gap-10 lg:grid-cols-3 lg:gap-8 group-block ">
-        {filteredProducts.map((product) => (
-          <div
-            key={product.id}
-            className="bg-[#e9eff3c9]  border border-[#21357329]  rounded-lg flex flex-col p-5 relative h-[350px] sm:h-[375px]"
-          >
-            <div className="w-full max-w-full px-16 bg-white rounded-lg">
-              <Carousel>
-                <CarouselContent>
-                  <CarouselItem>
-                    {product.images.map((image) => (
-                      <>
-                        <Dialog>
-                          <DialogTrigger className="w-full">
-                            <div className="cursor-pointer" key={image.id}>
-                              <div className="w-full  h-56 flex justify-center items-center rounded-lg">
-                                <img
-                                  className=" h-1/2  opacity-100  object-contain"
-                                  src={image.image}
-                                  alt={`Image ${image.id}`}
-                                />
-                              </div>
-                            </div>
-                          </DialogTrigger>
-                          <DialogContent>
-                            <DialogHeader className="px-10">
-                              <DialogTitle>
-                                <Carousel>
-                                  <CarouselContent>
-                                    <CarouselItem>
-                                      <div
-                                        className="cursor-pointer "
-                                        key={image.id}
-                                      >
-                                        <div className="w-full  h-56 flex justify-center items-center rounded-lg">
-                                          <img
-                                            className=" h-1/2  opacity-100  object-contain"
-                                            src={image.image}
-                                            alt={`Image ${image.id}`}
-                                          />
-                                        </div>
-                                      </div>
-                                    </CarouselItem>
-                                  </CarouselContent>
-                                  <CarouselPrevious />
-                                  <CarouselNext />
-                                </Carousel>
-                              </DialogTitle>
+  }
 
-                              <DialogTitle className="flex w-full justify-between items-center py-5">
-                                <span>{product.title}</span>
+  return (
+    <div className="w-full grid grid-cols-1 gap-10 lg:grid-cols-3 lg:gap-8 group-block">
+      {filteredProducts.map((product) => (
+        <div
+          key={product.id}
+          className="bg-[#e9eff3c9] border border-[#21357329] rounded-lg flex flex-col p-5 relative h-[350px] sm:h-[375px]"
+        >
+          <div className="w-full max-w-full px-16 bg-white rounded-lg">
+            <Carousel>
+              <CarouselContent>
+                {product.images.map((image) => (
+                  <CarouselItem key={image.id}>
+                    {/* ... (other imports and code) ... */}
 
-                                <span className=" text-green-600 ">
-                                  ${product.price}
-                                </span>
-                              </DialogTitle>
+                    <Dialog>
+                      <DialogTrigger className="w-full">
+                        <div className="cursor-pointer">
+                          <div className="w-full h-56 flex justify-center items-center rounded-lg">
+                            <img
+                              className="h-1/2 opacity-100 object-contain"
+                              src={image.image}
+                              alt={`Image ${image.id}`}
+                            />
+                          </div>
+                        </div>
+                      </DialogTrigger>
 
-                              <DialogDescription>
-                                <span>
-                                  {categoryData
-                                    .filter(
-                                      (categoryItem) =>
-                                        categoryItem.id === product.category
-                                    )
-                                    .map((matchedCategory) => (
-                                      <div key={matchedCategory.id}>
-                                        <h3>{matchedCategory.title}</h3>
-                                      </div>
-                                    ))}
-                                </span>
-
-                                <span>{product.About}</span>
-
-                                <Counter />
-
-                                <span>
-                                  {loadingButton ? (
-                                    <ButtonLoading text="Adding to Cart..." />
-                                  ) : (
-                                    <div
-                                      onClick={() => handleAddToCart(product)}
-                                    >
-                                      <DialogClose asChild>
-                                        <Button text="Add To Cart" />
-                                      </DialogClose>
+                      <DialogContent>
+                        <DialogHeader className="px-10">
+                          <DialogTitle>
+                            <Carousel>
+                              <CarouselContent>
+                                <CarouselItem>
+                                  <div className="cursor-pointer">
+                                    <div className="w-full h-56 flex justify-center items-center rounded-lg">
+                                      <img
+                                        className="h-1/2 opacity-100 object-contain"
+                                        src={image.image}
+                                        alt={`Image ${image.id}`}
+                                      />
                                     </div>
-                                  )}
-                                </span>
-                              </DialogDescription>
-                            </DialogHeader>
-                          </DialogContent>
-                        </Dialog>
-                      </>
-                    ))}
+                                  </div>
+                                </CarouselItem>
+                              </CarouselContent>
+                              <CarouselPrevious />
+                              <CarouselNext />
+                            </Carousel>
+                          </DialogTitle>
+
+                          <DialogTitle className="flex w-full justify-between items-center py-5">
+                            <span>{product.title}</span>
+
+                            <span className="text-green-600">
+                              ${product.price}
+                            </span>
+                          </DialogTitle>
+
+                          <DialogDescription>
+                            <span>
+                              {categoryData
+                                .filter(
+                                  (categoryItem) =>
+                                    categoryItem.id === product.category
+                                )
+                                .map((matchedCategory) => (
+                                  <div key={matchedCategory.id}>
+                                    <h3>{matchedCategory.title}</h3>
+                                  </div>
+                                ))}
+                            </span>
+
+                            <span>{product.About}</span>
+
+                            <Counter />
+
+                            <span>
+                              {loadingButton ? (
+                                <ButtonLoading text="Adding to Cart..." />
+                              ) : (
+                                <div onClick={() => handleAddToCart(product)}>
+                                  <DialogClose asChild>
+                                    <Button text="Add To Cart" />
+                                  </DialogClose>
+                                </div>
+                              )}
+                            </span>
+                          </DialogDescription>
+                        </DialogHeader>
+                      </DialogContent>
+                    </Dialog>
                   </CarouselItem>
-                </CarouselContent>
-                <CarouselPrevious />
-                <CarouselNext />
-              </Carousel>
-            </div>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious />
+              <CarouselNext />
+            </Carousel>
+          </div>
 
-            <div className="mt-3 py-5 px-10">
-              <div className="w-full flex justify-between items-center h-10">
-                <h3 className="text-sm text-black font-medium group-hover:underline group-hover:underline-offset-4">
-                  {product.title}
-                </h3>
+          <div className="mt-3 py-5 px-10">
+            <div className="w-full flex justify-between items-center h-10">
+              <h3 className="text-sm text-black font-medium group-hover:underline group-hover:underline-offset-4">
+                {product.title}
+              </h3>
 
-                <p className="mt-1.5 text-pretty text-xs text-green-600 font-bold flex gap-[1px]">
-                  <span>{"$"}</span>
-
-                  <span>{product.price}</span>
-                </p>
-              </div>
-
-              <p className="mt-1.5 text-pretty text-xs text-gray-900 font-medium">
-                {product.description}
+              <p className="mt-1.5 text-pretty text-xs text-green-600 font-bold flex gap-[1px]">
+                <span>{"$"}</span>
+                <span>{product.price}</span>
               </p>
             </div>
+
+            <p className="mt-1.5 text-pretty text-xs text-gray-900 font-medium">
+              {product.description}
+            </p>
           </div>
-        ))}
-      </div>
-    );
-  }
+        </div>
+      ))}
+    </div>
+  );
 };
