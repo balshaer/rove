@@ -89,9 +89,7 @@ const EditProduct = () => {
     e.preventDefault();
     setAccept(true);
 
-    await Axios.post(`${PRODUCT}/edit/${id}`, productData).then((data) => {
-      console.log(data);
-    });
+    await Axios.post(`${PRODUCT}/edit/${id}`, productData);
 
     navigate("/dashboard/showProducts");
   }

@@ -117,8 +117,6 @@ const ContactUs = () => {
             "your message send sucessfully , we will message you soon",
         });
       }, 2000);
-
-      console.log(formData);
     }
   };
   return (

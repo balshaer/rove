@@ -11,14 +11,13 @@ export default function RequireAuth({ allowedRole }) {
   const token = Cookies.get("Bearer");
   const [user, setUser] = useState("");
   useEffect(() => {
-    axios
-      .get(`${BASEURL}${USER}`, {
+    axios.get(`${BASEURL}${USER}`, {
         headers: {
           Authorization: "Bearer " + token,
         },
       })
       .then((data) => setUser(data.data));
-  }, []);
+  }, [token]);
 
   return token ? (
     user == "" ? (

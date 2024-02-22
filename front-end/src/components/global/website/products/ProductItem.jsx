@@ -28,6 +28,7 @@ import Counter from "@/components/custom/cart/counter/Counter";
 import { useCart } from "@/core/context/CartContext";
 import { useToast } from "@/components/ui/use-toast";
 import ProductSkeleton from "@/components/custom/skeletons/ProductSkeleton";
+import { useNavigate } from "react-router-dom";
 
 export const ProductItem = ({ productList, selectedCategoryProp }) => {
   const [products, setProducts] = useState([]);
@@ -41,23 +42,34 @@ export const ProductItem = ({ productList, selectedCategoryProp }) => {
   const [dialogOpen, setDialogOpen] = useState(false);
   const { toast } = useToast();
 
+  const token = Cookies.get("Bearer");
+
+  const navigate = useNavigate();
+
   const handleAddToCart = async (product) => {
-    setLoadingButton(true);
+    if (token) {
+      setLoadingButton(true);
 
-    await new Promise((resolve) => setTimeout(resolve, 3000));
+      await new Promise((resolve) => setTimeout(resolve, 3000));
 
-    setLoadingButton(false);
+      setLoadingButton(false);
+      const updatedCart = [...cart, product];
+      setCart(updatedCart);
 
-    const updatedCart = [...cart, product];
-    setCart(updatedCart);
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
 
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
+      addToCart(product);
 
-    addToCart(product);
+      toast({
+        title: "Add It To Your Cart",
+      });
+    } else {
+      navigate("/login");
 
-    toast({
-      title: "Add It To Your Cart",
-    });
+      toast({
+        title: "You Should Login First",
+      });
+    }
   };
 
   useEffect(() => {

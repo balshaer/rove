@@ -29,9 +29,7 @@ const CategoriesTable = () => {
 
   async function handleDeleteCategory(id) {
     try {
-      console.log("Deleting category with ID:", id);
-      const res = await Axios.delete(`${BASEURL}${CATEGORY}/${id}`);
-      console.log("Delete response:", res);
+      await Axios.delete(`${BASEURL}${CATEGORY}/${id}`);
       setReloadEffects((prev) => !prev);
       toast({
         description: "Category deleted",

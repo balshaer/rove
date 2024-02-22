@@ -11,15 +11,15 @@ import {
 } from "@/components/ui/sheet";
 import Logo from "@/components/ui/logo/Logo";
 import CommerceCart from "@/components/custom/commerce-cart/CommerceCart";
+import Cookies from "js-cookie";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
+  const token = Cookies.get("Bearer");
+
   return (
-    <header className="Navbar max-md:px-10 m-auto  px-4">
-      <div className="mx-auto flex h-16 max-w-screen-xl items-center gap-8  ">
-        <Link to="/" className="block  ">
-          <span className="sr-only">Home</span>
-        </Link>
+    <header className="Navbar max-md:px-10 m-auto ">
+      <div className="mx-auto flex h-16 max-w-screen-xl items-center gap-8 p-0   ">
         <div className="flex flex-1 items-center justify-end md:justify-between">
           <nav aria-label="Global" className="hidden md:block">
             <NavbarItems />
@@ -29,15 +29,17 @@ export default function Navbar() {
               <NavbarButtons />
             </div>
 
-            <div className="absolute top-0 right-0 left-0 m-auto  flex justify-between items-center h-16 px-4 lg:hidden ">
+            <div className="absolute top-0 right-0 left-0 m-auto  flex justify-between items-center h-16 px-4 md:hidden  ">
               <div className="h-full w-max  justify-center items-center hidden max-md:flex">
                 <Logo />
               </div>
 
               <div className="flex justify-center items-center">
-                <div className="me-4  md:hidden">
-                  <CommerceCart />
-                </div>
+                {token && (
+                  <div className="me-4  md:hidden">
+                    <CommerceCart />
+                  </div>
+                )}
 
                 <Sheet>
                   <SheetTrigger className="max-md:w-full">

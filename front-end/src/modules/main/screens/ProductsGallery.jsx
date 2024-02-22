@@ -116,7 +116,10 @@ const ProductsGallery = () => {
           </div>
         </div>
 
-        <ProductItem productList={products} selectedCategoryProp={selectedCategory} />
+        <ProductItem
+          productList={products}
+          selectedCategoryProp={selectedCategory}
+        />
       </div>
 
       <Footer />

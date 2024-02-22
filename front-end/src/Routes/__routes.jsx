@@ -28,6 +28,8 @@ import ProductsGallery from "@/modules/main/screens/ProductsGallery";
 export default function Routes() {
   return (
     <AllRoutes>
+
+
       <Route path="/" element={<Home />} />
       <Route path="products" element={<ProductsGallery />} />
 

@@ -22,7 +22,6 @@ function ProfileMenu() {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState({ name: "", email: "", role: null });
 
-  console.log(user);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -84,7 +83,7 @@ function ProfileMenu() {
             </li>
           </ul>
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="w-full min-w-40 bg-[#f7f7f7]">
+      <DropdownMenuContent className="w-full min-w-40 bg-[#f7f7f7]">
           <DropdownMenuLabel>My Profile</DropdownMenuLabel>
           <DropdownMenuSeparator />
 
@@ -104,7 +103,7 @@ function ProfileMenu() {
           <DropdownMenuItem>
             <Link
               className="w-full flex justify-between flex-row items-center"
-              to="profile"
+              to="/profile"
             >
               <span>Profile</span>
               <span>
@@ -125,30 +124,34 @@ function ProfileMenu() {
               </span>
             </Link>
           </DropdownMenuItem>
-          <DropdownMenuItem>
-            <Link
-              className="w-full flex justify-between flex-row items-center"
-              to="showUsers"
-            >
-              <span>Users</span>
-              <span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="#2b2e4a"
-                  className="w-4 h-4"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z"
-                  />
-                </svg>
-              </span>
-            </Link>
-          </DropdownMenuItem>
+
+          {user.role && user.role.value == "1995" && (
+            <DropdownMenuItem>
+              <Link
+                className="w-full flex justify-between flex-row items-center"
+                to="showUsers"
+              >
+                <span>Users</span>
+                <span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="#2b2e4a"
+                    className="w-4 h-4"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z"
+                    />
+                  </svg>
+                </span>
+              </Link>
+            </DropdownMenuItem>
+          )}
+
           <DropdownMenuItem className="cursor-pointer">
             <span
               className="w-full flex justify-between flex-row items-center"
