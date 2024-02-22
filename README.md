@@ -1,6 +1,8 @@
-<div style="display: flex; justify-content: center; align-items: center; width=100%;">
+<p align="center">
+
 <img  hegiht="100" width="100" src="https://cdn.dribbble.com/userupload/13193859/file/original-47dbb18405c596aebf5dfb8fd7b88beb.png?resize=400x400"  />
-</div>
+
+</p>
 
 # Rove
 
