@@ -1,5 +1,4 @@
-
-<div style="display: flex; justify-content: center; align-items: center;">
+<div style="display: flex; justify-content: center; align-items: center; width=100%;">
 <img  hegiht="100" width="100" src="https://cdn.dribbble.com/userupload/13193859/file/original-47dbb18405c596aebf5dfb8fd7b88beb.png?resize=400x400"  />
 </div>
 
@@ -22,10 +21,12 @@ Rove is a web application built with React, Tailwind CSS, PHP, and Laravel. It s
 ## Technologies Used
 
 #### FrontEnd
+
 - React
 - Tailwind CSS.
 
 #### Backend
+
 - Laravel 10
 - MySQL
 
