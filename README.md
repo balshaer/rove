@@ -1,9 +1,3 @@
-<p align="center">
-
-<img  hegiht="100" width="100" src="https://cdn.dribbble.com/userupload/13193859/file/original-47dbb18405c596aebf5dfb8fd7b88beb.png?resize=400x400"  />
-
-</p>
-
 # Rove
 
 Rove is a web application built with React, Tailwind CSS, PHP, and Laravel. It serves as an e-commerce platform specializing in men's watches and clothes.
